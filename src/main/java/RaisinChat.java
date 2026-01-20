@@ -23,7 +23,7 @@ public class RaisinChat {
 
         while (waitUser) {
             String userInput = scanner.nextLine();
-            if (userInput.equalsIgnoreCase("bye")) {
+            if (userInput.equalsIgnoreCase("bye") || userInput.equalsIgnoreCase("exit")) {
                 waitUser = false;
             }
             else if (userInput.equalsIgnoreCase("help")) {
@@ -47,7 +47,7 @@ public class RaisinChat {
                 listOfTask.add(newTask);
                 String addedTaskString = "We have added: %s";
                 String finalString = String.format(addedTaskString, userInput);
-                printOutput(finalString.toString());
+                printOutput(finalString);
             }
 
         }

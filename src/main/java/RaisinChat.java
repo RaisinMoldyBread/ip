@@ -1,10 +1,19 @@
 public class RaisinChat {
+    static String chatName = "RaisinChat";
+    static String logo = "__________        .__       .__       _________ .__            __   \n" +
+            "\\______   \\_____  |__| _____|__| ____ \\_   ___ \\|  |__ _____ _/  |_ \n" +
+            " |       _/\\__  \\ |  |/  ___/  |/    \\/    \\  \\/|  |  \\\\__  \\\\   __\\\n" +
+            " |    |   \\ / __ \\|  |\\___ \\|  |   |  \\     \\___|   Y  \\/ __ \\|  |  \n" +
+            " |____|_  /(____  /__/____  >__|___|  /\\______  /___|  (____  /__|  \n" +
+            "        \\/      \\/        \\/        \\/        \\/     \\/     \\/      ";
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println(logo);
+        String borders = "----------------------------------------------";
+        System.out.println(borders);
+        System.out.println("Hello! I'm " + chatName);
+        System.out.println("What can I do for you?");
+        System.out.println(borders);
+        System.out.println("Bye. Hope ot see you again soon!");
+        System.out.println(borders);
     }
 }

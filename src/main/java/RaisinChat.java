@@ -29,12 +29,13 @@ public class RaisinChat {
             else if (userInput.equalsIgnoreCase("help")) {
                 printOutput("List - List all available tasks \n" +
                         "Help - List all commands available to chatbot \n" +
-                        "Bye - Exit Chatbot :(");
+                        "Bye - Exit Chatbot :( \n" +
+                        "Key in anything to add to task list!");
             }
             else if (userInput.equalsIgnoreCase("list")) {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < listOfTask.size(); i++) {
-                    sb.append(i)
+                    sb.append(i + 1)
                             .append(". ")
                             .append(listOfTask.get(i).toString())
                             .append("\n");
@@ -42,7 +43,11 @@ public class RaisinChat {
                 printOutput(sb.toString());
             }
             else {
-                printOutput(userInput);
+                Task newTask = new Task(userInput);
+                listOfTask.add(newTask);
+                String addedTaskString = "We have added: %s";
+                String finalString = String.format(addedTaskString, userInput);
+                printOutput(finalString.toString());
             }
 
         }

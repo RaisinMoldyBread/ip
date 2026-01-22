@@ -3,14 +3,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RaisinChat {
-    static String CHATNAME = "RaisinChat";
-    static String LOGO = "__________        .__       .__       _________ .__            __   \n" +
+    public static final String CHATNAME = "RaisinChat";
+    public static final String LOGO = "__________        .__       .__       _________ .__            __   \n" +
             "\\______   \\_____  |__| _____|__| ____ \\_   ___ \\|  |__ _____ _/  |_ \n" +
             " |       _/\\__  \\ |  |/  ___/  |/    \\/    \\  \\/|  |  \\\\__  \\\\   __\\\n" +
             " |    |   \\ / __ \\|  |\\___ \\|  |   |  \\     \\___|   Y  \\/ __ \\|  |  \n" +
             " |____|_  /(____  /__/____  >__|___|  /\\______  /___|  (____  /__|  \n" +
             "        \\/      \\/        \\/        \\/        \\/     \\/     \\/      ";
-    static String BORDERS = "----------------------------------------------";
+    public static final String BORDERS = "----------------------------------------------";
+    public static final String HELPSTRING = """
+            List - List all available tasks
+            Help - List all commands available to chatbot
+            Mark [Task index] - Marks task at index specified to be done
+            Unmark [Task index] - Marks a task as not completed
+            Bye/Exit - Exit Chatbot :(
+            Key in anything to add to task list!""";
     static List<Task> listOfTask = new ArrayList<>();
     public static void main(String[] args) {
         System.out.println(LOGO);
@@ -22,17 +29,13 @@ public class RaisinChat {
         Scanner scanner  = new Scanner(System.in);
 
         while (waitUser) {
-            String userInput = scanner.nextLine();
-            if (userInput.equalsIgnoreCase("bye") || userInput.equalsIgnoreCase("exit")) {
+            String userInput = scanner.nextLine().trim();
+            String[] parts = userInput.split("\\s+");
+            if (parts[0].equalsIgnoreCase("bye") || userInput.equalsIgnoreCase("exit")) {
                 waitUser = false;
-            }
-            else if (userInput.equalsIgnoreCase("help")) {
-                printOutput("List - List all available tasks \n" +
-                        "Help - List all commands available to chatbot \n" +
-                        "Bye - Exit Chatbot :( \n" +
-                        "Key in anything to add to task list!");
-            }
-            else if (userInput.equalsIgnoreCase("list")) {
+            } else if (parts[0].equalsIgnoreCase("help")) {
+                printOutput(HELPSTRING);
+            } else if (parts[0].equalsIgnoreCase("list")) {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < listOfTask.size(); i++) {
                     sb.append(i + 1)
@@ -41,8 +44,29 @@ public class RaisinChat {
                             .append("\n");
                 }
                 printOutput(sb.toString());
-            }
-            else {
+            } else if (parts[0].equalsIgnoreCase("mark")) {
+                if (parts.length < 2) {
+                    printOutput("Please specify a task index.");
+                    return;
+                }
+
+                int index = -1;
+                try {
+                    index = Integer.parseInt(parts[1]);
+                } catch (NumberFormatException e) {
+                    printOutput("Task index must be a number.");
+                    continue;
+                }
+
+                if (index <= 0 || index > listOfTask.size()) {
+                    printOutput("Such task index does not exist!");
+                } else {
+                    Task toMark = listOfTask.get(index - 1);
+                    printOutput(toMark.markDone());
+                }
+
+
+            } else {
                 Task newTask = new Task(userInput);
                 listOfTask.add(newTask);
                 String addedTaskString = "We have added: %s";

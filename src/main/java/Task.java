@@ -10,8 +10,7 @@ public class Task {
     public String markDone() {
         if (this.isDone) {
             return "This task was already marked as done in the past!";
-        }
-        else {
+        } else {
             this.isDone = true;
             return String.format("Great job completing the task!\n" +
                     "I've gone ahead and mark it as done!\n%s", this.toString());
@@ -21,8 +20,7 @@ public class Task {
     public String unMark() {
         if (!this.isDone) {
             return "Oop... you  actually haven't completed this task!";
-        }
-        else {
+        } else {
             this.isDone = false;
             return String.format("Hmm... falling behind are we?\n" +
                     "I've unmarked the task as done!\n%s", this.toString());

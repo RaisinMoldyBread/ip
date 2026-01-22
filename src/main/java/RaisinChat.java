@@ -30,14 +30,20 @@ public class RaisinChat {
 
         while (waitUser) { // As long as  "bye"/"exit" isn't supplied, loop forever
             String userInput = scanner.nextLine().trim();
-            String[] parts = userInput.split("\\s+");
-            if (parts[0].equalsIgnoreCase("bye")
-                    || userInput.equalsIgnoreCase("exit")) {
+            String[] parts = userInput.split("\\s+", 2);
+            // We split userInput to 2 parts, 1st will always be commands
+            // 2nd will always be some args, we will further filter in the future
+            String command = parts[0];
+            String arguements = parts.length > 1 ? parts[1] : "";
+            if (command.equalsIgnoreCase("bye")
+                    || command.equalsIgnoreCase("exit")) {
                 waitUser = false; // This causes loop to break and exit application
-            } else if (parts[0].equalsIgnoreCase("help")) {
+
+            } else if (command.equalsIgnoreCase("help")) {
                 // Prints the help string for the chatbot
                 printOutput(HELPSTRING);
-            } else if (parts[0].equalsIgnoreCase("list")) {
+
+            } else if (command.equalsIgnoreCase("list")) {
                 // Lists the tasks available
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < listOfTask.size(); i++) {
@@ -47,15 +53,17 @@ public class RaisinChat {
                             .append("\n");
                 }
                 printOutput(sb.toString());
-            } else if (parts[0].equalsIgnoreCase("mark")) {
-                if (parts.length < 2) { // Checks if input contains an index
+
+            } else if (command.equalsIgnoreCase("mark")) {
+                if (arguements.isBlank()) { // Checks if input contains an index
                     printOutput("Please specify a task index.");
-                    return;
+                    continue;
                 }
 
                 int index = -1;
                 try { // If second part of input is not number, throw error message to user
-                    index = Integer.parseInt(parts[1]);
+                    index = Integer.parseInt(arguements);
+
                 } catch (NumberFormatException e) {
                     printOutput("Task index must be a number.");
                     continue;
@@ -70,15 +78,15 @@ public class RaisinChat {
                     printOutput(task.markDone());
                 }
 
-            } else if (parts[0].equalsIgnoreCase("unmark")) {
-                if (parts.length < 2) { // Checks if input contains an index
+            } else if (command.equalsIgnoreCase("unmark")) {
+                if (arguements.isBlank()) { // Checks if input contains an index
                     printOutput("Please specify a task index.");
-                    return;
+                    continue;
                 }
 
                 int index = -1;
                 try { // If second part of input is not number, throw error message to user
-                    index = Integer.parseInt(parts[1]);
+                    index = Integer.parseInt(arguements);
                 } catch (NumberFormatException e) {
                     printOutput("Task index must be a number.");
                     continue;
@@ -92,6 +100,14 @@ public class RaisinChat {
                     Task task = listOfTask.get(index - 1);
                     printOutput(task.markUndone());
                 }
+            } else if (command.equalsIgnoreCase("todo")) {
+                Task newTodo = new Todo(arguements);
+                listOfTask.add(newTodo);
+                String res = String.format("Got it! I have added this task\n" +
+                        "   %s\n" +
+                        "Now you have %d tasks!", newTodo.toString(), listOfTask.size());
+                printOutput(res);
+
             } else {
                 Task newTask = new Task(userInput);
                 listOfTask.add(newTask);

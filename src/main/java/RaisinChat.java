@@ -19,8 +19,7 @@ public class RaisinChat {
             event [name of task] /from [start] /to [end] - Creates event task with start time and end time
             mark [Task index] - Marks task at index specified to be done
             unmark [Task index] - Marks a task as not completed
-            bye/exit - Exit Chatbot :(
-            Key in anything to add to task list!""";
+            bye/exit - Exit Chatbot :(""";
     static List<Task> listOfTask = new ArrayList<>();
     public static void main(String[] args) {
         System.out.println(LOGO);
@@ -149,12 +148,6 @@ public class RaisinChat {
                         "   %s\n" +
                         "Now you have %d tasks!", eventTask.toString(), listOfTask.size());
                 printOutput(res);
-            } else {
-                Task newTask = new Task(userInput);
-                listOfTask.add(newTask);
-                String addedTaskString = "We have added: %s";
-                String finalString = String.format(addedTaskString, userInput);
-                printOutput(finalString);
             }
 
         }

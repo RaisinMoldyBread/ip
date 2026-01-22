@@ -18,9 +18,10 @@ public class Task {
             return "This task was already marked as done in the past!";
         } else {
             this.isDone = true;
-            return String.format("Great job completing the task!\n" +
-                    "I've gone ahead and mark it as done!\n " +
-                    "   %s", this.toString());
+            return String.format("Great job completing the task!\n"
+                    + "I've gone ahead and mark it as done!\n "
+                    + "   %s",
+                    this.toString());
         }
     }
 
@@ -35,9 +36,10 @@ public class Task {
             return "Oop... you actually haven't completed this task!";
         } else {
             this.isDone = false;
-            return String.format("Hmm... falling behind are we?\n" +
-                    "I've unmarked the task as done!\n  " +
-                    "   %s", this.toString());
+            return String.format("Hmm... falling behind are we?\n"
+                    + "I've unmarked the task as done!\n  "
+                    + "   %s",
+                    this.toString());
         }
     }
 

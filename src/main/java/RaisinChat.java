@@ -4,12 +4,13 @@ import java.util.Scanner;
 
 public class RaisinChat {
     public static final String CHATNAME = "RaisinChat";
-    public static final String LOGO = "__________        .__       .__       _________ .__            __   \n" +
-            "\\______   \\_____  |__| _____|__| ____ \\_   ___ \\|  |__ _____ _/  |_ \n" +
-            " |       _/\\__  \\ |  |/  ___/  |/    \\/    \\  \\/|  |  \\\\__  \\\\   __\\\n" +
-            " |    |   \\ / __ \\|  |\\___ \\|  |   |  \\     \\___|   Y  \\/ __ \\|  |  \n" +
-            " |____|_  /(____  /__/____  >__|___|  /\\______  /___|  (____  /__|  \n" +
-            "        \\/      \\/        \\/        \\/        \\/     \\/     \\/      ";
+    public static final String LOGO = "__________        .__       .__       _________ .__            __   \n"
+            + "\\______   \\_____  |__| _____|__| ____ \\_   ___ \\|  |__ _____ _/  |_ \n"
+            + " |       _/\\__  \\ |  |/  ___/  |/    \\/    \\  \\/|  |  \\\\__  \\\\   __\\\n"
+            + " |    |   \\ / __ \\|  |\\___ \\|  |   |  \\     \\___|   Y  \\/ __ \\|  |  \n"
+            + " |____|_  /(____  /__/____  >__|___|  /\\______  /___|  (____  /__|  \n"
+            + "        \\/      \\/        \\/        \\/        \\/     \\/     \\/      ";
+
     public static final String BORDERS = "----------------------------------------------";
     public static final String HELPSTRING = """
             list - List all available tasks
@@ -104,9 +105,11 @@ public class RaisinChat {
             } else if (command.equalsIgnoreCase("todo")) {
                 Task newTodo = new Todo(arguments);
                 listOfTask.add(newTodo);
-                String res = String.format("Got it! I have added this task\n" +
-                        "   %s\n" +
-                        "Now you have %d tasks!", newTodo.toString(), listOfTask.size());
+                String res = String.format("Got it! I have added this task\n"
+                        + "  %s\n"
+                        + "Now you have %d tasks!",
+                        newTodo.toString(),
+                        listOfTask.size());
                 printOutput(res);
 
             } else if (command.equalsIgnoreCase("deadline")) {
@@ -120,9 +123,11 @@ public class RaisinChat {
                 String by = getDeadline[1].trim();
                 Task deadlineTask = new Deadline(nameTask, by);
                 listOfTask.add(deadlineTask);
-                String res = String.format("Got it! I have added this task\n" +
-                        "   %s\n" +
-                        "Now you have %d tasks!", deadlineTask.toString(), listOfTask.size());
+                String res = String.format("Got it! I have added this task\n"
+                        + "   %s\n"
+                        + "Now you have %d tasks!",
+                        deadlineTask.toString(),
+                        listOfTask.size());
                 printOutput(res);
 
             } else if (command.equalsIgnoreCase("event")) {
@@ -144,9 +149,11 @@ public class RaisinChat {
                 String endTime = getActualTiming[1].trim();
                 Task eventTask = new Event(nameTask, startTime, endTime);
                 listOfTask.add(eventTask);
-                String res = String.format("Got it! I have added this task\n" +
-                        "   %s\n" +
-                        "Now you have %d tasks!", eventTask.toString(), listOfTask.size());
+                String res = String.format("Got it! I have added this task\n"
+                        + "   %s\n"
+                        + "Now you have %d tasks!",
+                        eventTask.toString(),
+                        listOfTask.size());
                 printOutput(res);
             }
 

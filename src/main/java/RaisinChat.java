@@ -12,19 +12,21 @@ public class RaisinChat {
             "        \\/      \\/        \\/        \\/        \\/     \\/     \\/      ";
     public static final String BORDERS = "----------------------------------------------";
     public static final String HELPSTRING = """
-            List - List all available tasks
-            Help - List all commands available to chatbot
-            Mark [Task index] - Marks task at index specified to be done
-            Unmark [Task index] - Marks a task as not completed
-            Bye/Exit - Exit Chatbot :(
+            list - List all available tasks
+            help - List all commands available to chatbot
+            todo [name of task] - Creates a todo task
+            deadline [name of task] /by [deadline of task] - Creates task with deadline specified
+            event [name of task] /from [start] /to [end] - Creates event task with start time and end time
+            mark [Task index] - Marks task at index specified to be done
+            unmark [Task index] - Marks a task as not completed
+            bye/exit - Exit Chatbot :(
             Key in anything to add to task list!""";
     static List<Task> listOfTask = new ArrayList<>();
     public static void main(String[] args) {
         System.out.println(LOGO);
-        System.out.println(BORDERS);
-        System.out.println("Hello! I'm " + CHATNAME);
-        System.out.println("What can I do for you?");
-        System.out.println(BORDERS);
+        String intro = String.format("Hello! I'm %s\n" +
+                "What can I do for you today?", CHATNAME);
+        printOutput(intro);
         boolean waitUser = true;
         Scanner scanner  = new Scanner(System.in);
 
@@ -45,7 +47,7 @@ public class RaisinChat {
 
             } else if (command.equalsIgnoreCase("list")) {
                 // Lists the tasks available
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new StringBuilder("Here are the list of task right now:\n");
                 for (int i = 0; i < listOfTask.size(); i++) {
                     sb.append(i + 1)
                             .append(". ")
@@ -108,6 +110,45 @@ public class RaisinChat {
                         "Now you have %d tasks!", newTodo.toString(), listOfTask.size());
                 printOutput(res);
 
+            } else if (command.equalsIgnoreCase("deadline")) {
+                String[] getDeadline = arguments.split("/by", 2);
+                // We split using /by so that we can extract deadline time
+                if (getDeadline.length < 2) {
+                    printOutput("Please specify deadline using /by");
+                    continue;
+                }
+                String nameTask = getDeadline[0].trim();
+                String by = getDeadline[1].trim();
+                Task deadlineTask = new Deadline(nameTask, by);
+                listOfTask.add(deadlineTask);
+                String res = String.format("Got it! I have added this task\n" +
+                        "   %s\n" +
+                        "Now you have %d tasks!", deadlineTask.toString(), listOfTask.size());
+                printOutput(res);
+
+            } else if (command.equalsIgnoreCase("event")) {
+                String[] getStart = arguments.split("/from", 2);
+                // We split using /from first to get task name
+                if (getStart.length < 2) {
+                    printOutput("Please specify start time using /from");
+                    continue;
+                }
+                String nameTask = getStart[0].trim();
+                String getFullTiming = getStart[1].trim();
+                // We split again using /to to get the actual start and end times
+                String[] getActualTiming = getFullTiming.split("/to", 2);
+                if (getActualTiming.length < 2) {
+                    printOutput("Please specify end time AFTER /from using /to");
+                    continue;
+                }
+                String startTime = getActualTiming[0].trim();
+                String endTime = getActualTiming[1].trim();
+                Task eventTask = new Event(nameTask, startTime, endTime);
+                listOfTask.add(eventTask);
+                String res = String.format("Got it! I have added this task\n" +
+                        "   %s\n" +
+                        "Now you have %d tasks!", eventTask.toString(), listOfTask.size());
+                printOutput(res);
             } else {
                 Task newTask = new Task(userInput);
                 listOfTask.add(newTask);

@@ -19,7 +19,8 @@ public class Task {
         } else {
             this.isDone = true;
             return String.format("Great job completing the task!\n" +
-                    "I've gone ahead and mark it as done!\n%s", this.toString());
+                    "I've gone ahead and mark it as done!\n " +
+                    "   %s", this.toString());
         }
     }
 
@@ -35,7 +36,8 @@ public class Task {
         } else {
             this.isDone = false;
             return String.format("Hmm... falling behind are we?\n" +
-                    "I've unmarked the task as done!\n%s", this.toString());
+                    "I've unmarked the task as done!\n  " +
+                    "   %s", this.toString());
         }
     }
 

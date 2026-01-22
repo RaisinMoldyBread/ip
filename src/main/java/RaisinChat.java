@@ -61,11 +61,30 @@ public class RaisinChat {
                 if (index <= 0 || index > listOfTask.size()) {
                     printOutput("Such task index does not exist!");
                 } else {
-                    Task toMark = listOfTask.get(index - 1);
-                    printOutput(toMark.markDone());
+                    Task task = listOfTask.get(index - 1);
+                    printOutput(task.markDone());
                 }
 
+            } else if (parts[0].equalsIgnoreCase("unmark")) {
+                if (parts.length < 2) {
+                    printOutput("Please specify a task index.");
+                    return;
+                }
 
+                int index = -1;
+                try {
+                    index = Integer.parseInt(parts[1]);
+                } catch (NumberFormatException e) {
+                    printOutput("Task index must be a number.");
+                    continue;
+                }
+
+                if (index <= 0 || index > listOfTask.size()) {
+                    printOutput("Such task index does not exist!");
+                } else {
+                    Task task = listOfTask.get(index - 1);
+                    printOutput(task.markUndone());
+                }
             } else {
                 Task newTask = new Task(userInput);
                 listOfTask.add(newTask);

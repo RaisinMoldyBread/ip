@@ -17,9 +17,9 @@ public class Task {
         }
     }
 
-    public String unMark() {
+    public String markUndone() {
         if (!this.isDone) {
-            return "Oop... you  actually haven't completed this task!";
+            return "Oop... you actually haven't completed this task!";
         } else {
             this.isDone = false;
             return String.format("Hmm... falling behind are we?\n" +

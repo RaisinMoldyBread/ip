@@ -24,6 +24,12 @@ Got it! I have added this task
 Now you have 1 tasks!
 ----------------------------------------------
 ----------------------------------------------
+Hmm, you are doing it wrong! Use command like this: event <taskName> /from <start> /to <end>
+----------------------------------------------
+----------------------------------------------
+Hmm, you are doing it wrong! Use command like this: event <taskName> /from <start> /to <end>
+----------------------------------------------
+----------------------------------------------
 Here are the list of task right now:
 1. [E][ ] meeting (from: Mon 2pm to: Mon 4pm)
 
@@ -34,10 +40,13 @@ I've gone ahead and mark it as done!
 	[E][X] meeting (from: Mon 2pm to: Mon 4pm)
 ----------------------------------------------
 ----------------------------------------------
-Such task index does not exist!
+Such task index does not exist! Please check the list again!
 ----------------------------------------------
 ----------------------------------------------
-Such task index does not exist!
+Task index must be a number!
+----------------------------------------------
+----------------------------------------------
+Such task index does not exist! Please check the list again!
 ----------------------------------------------
 ----------------------------------------------
 Hmm... falling behind are we?
@@ -45,14 +54,26 @@ I've unmarked the task as done!
 	[E][ ] meeting (from: Mon 2pm to: Mon 4pm)
 ----------------------------------------------
 ----------------------------------------------
+Task index must be a number!
+----------------------------------------------
+----------------------------------------------
 Got it! I have added this task
 	[D][ ] homework (by: Thurs 3pm)
 Now you have 2 tasks!
 ----------------------------------------------
 ----------------------------------------------
+Hmm, you are doing it wrong! Use command like this: deadline <taskName> /by <end>
+----------------------------------------------
+----------------------------------------------
+Hmm, you are doing it wrong! Use command like this: deadline <taskName> /by <end>
+----------------------------------------------
+----------------------------------------------
 Got it! I have added this task
 	[T][ ] buy mangoes
 Now you have 3 tasks!
+----------------------------------------------
+----------------------------------------------
+Hmm, you are doing it wrong! Use command like this: todo <taskName>
 ----------------------------------------------
 ----------------------------------------------
 Here are the list of task right now:

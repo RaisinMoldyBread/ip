@@ -1,12 +1,19 @@
 help
 event meeting /from Mon 2pm /to Mon 4pm
+event /from Tue 2pm /to 3pm
+event drink /to 10pm /from 2pm
 list
 mark 1
 mark 0
+mark ten
 unmark 0
 unmark 1
+unmark ten
 deadline homework /by Thurs 3pm
+deadline /by 3pm
+deadline diving lession
 todo buy mangoes
+todo
 list
 mark 3
 list

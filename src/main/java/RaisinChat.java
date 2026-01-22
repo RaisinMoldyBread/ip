@@ -151,9 +151,7 @@ public class RaisinChat {
             }
 
         }
-        System.out.println(BORDERS);
-        System.out.println("Bye :\") Please come back again :\")");
-        System.out.println(BORDERS);
+        printOutput("Bye :\") Please come back again :\")");
 
     }
 

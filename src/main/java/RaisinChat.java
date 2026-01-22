@@ -34,7 +34,7 @@ public class RaisinChat {
             // We split userInput to 2 parts, 1st will always be commands
             // 2nd will always be some args, we will further filter in the future
             String command = parts[0];
-            String arguements = parts.length > 1 ? parts[1] : "";
+            String arguments = parts.length > 1 ? parts[1] : "";
             if (command.equalsIgnoreCase("bye")
                     || command.equalsIgnoreCase("exit")) {
                 waitUser = false; // This causes loop to break and exit application
@@ -55,14 +55,14 @@ public class RaisinChat {
                 printOutput(sb.toString());
 
             } else if (command.equalsIgnoreCase("mark")) {
-                if (arguements.isBlank()) { // Checks if input contains an index
+                if (arguments.isBlank()) { // Checks if input contains an index
                     printOutput("Please specify a task index.");
                     continue;
                 }
 
                 int index = -1;
                 try { // If second part of input is not number, throw error message to user
-                    index = Integer.parseInt(arguements);
+                    index = Integer.parseInt(arguments);
 
                 } catch (NumberFormatException e) {
                     printOutput("Task index must be a number.");
@@ -79,14 +79,14 @@ public class RaisinChat {
                 }
 
             } else if (command.equalsIgnoreCase("unmark")) {
-                if (arguements.isBlank()) { // Checks if input contains an index
+                if (arguments.isBlank()) { // Checks if input contains an index
                     printOutput("Please specify a task index.");
                     continue;
                 }
 
                 int index = -1;
                 try { // If second part of input is not number, throw error message to user
-                    index = Integer.parseInt(arguements);
+                    index = Integer.parseInt(arguments);
                 } catch (NumberFormatException e) {
                     printOutput("Task index must be a number.");
                     continue;
@@ -101,7 +101,7 @@ public class RaisinChat {
                     printOutput(task.markUndone());
                 }
             } else if (command.equalsIgnoreCase("todo")) {
-                Task newTodo = new Todo(arguements);
+                Task newTodo = new Todo(arguments);
                 listOfTask.add(newTodo);
                 String res = String.format("Got it! I have added this task\n" +
                         "   %s\n" +

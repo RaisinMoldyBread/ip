@@ -31,7 +31,8 @@ public class RaisinChat {
         while (waitUser) {
             String userInput = scanner.nextLine().trim();
             String[] parts = userInput.split("\\s+");
-            if (parts[0].equalsIgnoreCase("bye") || userInput.equalsIgnoreCase("exit")) {
+            if (parts[0].equalsIgnoreCase("bye")
+                    || userInput.equalsIgnoreCase("exit")) {
                 waitUser = false;
             } else if (parts[0].equalsIgnoreCase("help")) {
                 printOutput(HELPSTRING);

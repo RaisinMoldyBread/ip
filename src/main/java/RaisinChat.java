@@ -3,21 +3,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RaisinChat {
-    static String chatName = "RaisinChat";
-    static String logo = "__________        .__       .__       _________ .__            __   \n" +
+    static String CHATNAME = "RaisinChat";
+    static String LOGO = "__________        .__       .__       _________ .__            __   \n" +
             "\\______   \\_____  |__| _____|__| ____ \\_   ___ \\|  |__ _____ _/  |_ \n" +
             " |       _/\\__  \\ |  |/  ___/  |/    \\/    \\  \\/|  |  \\\\__  \\\\   __\\\n" +
             " |    |   \\ / __ \\|  |\\___ \\|  |   |  \\     \\___|   Y  \\/ __ \\|  |  \n" +
             " |____|_  /(____  /__/____  >__|___|  /\\______  /___|  (____  /__|  \n" +
             "        \\/      \\/        \\/        \\/        \\/     \\/     \\/      ";
-    static String borders = "----------------------------------------------";
+    static String BORDERS = "----------------------------------------------";
     static List<Task> listOfTask = new ArrayList<>();
     public static void main(String[] args) {
-        System.out.println(logo);
-        System.out.println(borders);
-        System.out.println("Hello! I'm " + chatName);
+        System.out.println(LOGO);
+        System.out.println(BORDERS);
+        System.out.println("Hello! I'm " + CHATNAME);
         System.out.println("What can I do for you?");
-        System.out.println(borders);
+        System.out.println(BORDERS);
         boolean waitUser = true;
         Scanner scanner  = new Scanner(System.in);
 
@@ -51,15 +51,15 @@ public class RaisinChat {
             }
 
         }
-        System.out.println(borders);
+        System.out.println(BORDERS);
         System.out.println("Bye :\") Please come back again :\")");
-        System.out.println(borders);
+        System.out.println(BORDERS);
 
     }
 
     public static void printOutput(String data) {
-        System.out.println(borders);
+        System.out.println(BORDERS);
         System.out.println(data);
-        System.out.println(borders);
+        System.out.println(BORDERS);
     }
 }

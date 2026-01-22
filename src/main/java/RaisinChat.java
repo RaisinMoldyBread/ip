@@ -28,15 +28,17 @@ public class RaisinChat {
         boolean waitUser = true;
         Scanner scanner  = new Scanner(System.in);
 
-        while (waitUser) {
+        while (waitUser) { // As long as  "bye"/"exit" isn't supplied, loop forever
             String userInput = scanner.nextLine().trim();
             String[] parts = userInput.split("\\s+");
             if (parts[0].equalsIgnoreCase("bye")
                     || userInput.equalsIgnoreCase("exit")) {
-                waitUser = false;
+                waitUser = false; // This causes loop to break and exit application
             } else if (parts[0].equalsIgnoreCase("help")) {
+                // Prints the help string for the chatbot
                 printOutput(HELPSTRING);
             } else if (parts[0].equalsIgnoreCase("list")) {
+                // Lists the tasks available
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < listOfTask.size(); i++) {
                     sb.append(i + 1)
@@ -46,43 +48,47 @@ public class RaisinChat {
                 }
                 printOutput(sb.toString());
             } else if (parts[0].equalsIgnoreCase("mark")) {
-                if (parts.length < 2) {
+                if (parts.length < 2) { // Checks if input contains an index
                     printOutput("Please specify a task index.");
                     return;
                 }
 
                 int index = -1;
-                try {
+                try { // If second part of input is not number, throw error message to user
                     index = Integer.parseInt(parts[1]);
                 } catch (NumberFormatException e) {
                     printOutput("Task index must be a number.");
                     continue;
                 }
 
+                // If index supplied is not valid, throw error to user
                 if (index <= 0 || index > listOfTask.size()) {
                     printOutput("Such task index does not exist!");
                 } else {
+                    // Index is valid, proceed to mark task
                     Task task = listOfTask.get(index - 1);
                     printOutput(task.markDone());
                 }
 
             } else if (parts[0].equalsIgnoreCase("unmark")) {
-                if (parts.length < 2) {
+                if (parts.length < 2) { // Checks if input contains an index
                     printOutput("Please specify a task index.");
                     return;
                 }
 
                 int index = -1;
-                try {
+                try { // If second part of input is not number, throw error message to user
                     index = Integer.parseInt(parts[1]);
                 } catch (NumberFormatException e) {
                     printOutput("Task index must be a number.");
                     continue;
                 }
 
+                // If index supplied is not valid, throw error to user
                 if (index <= 0 || index > listOfTask.size()) {
                     printOutput("Such task index does not exist!");
                 } else {
+                    // Index is valid, proceed to unmark task
                     Task task = listOfTask.get(index - 1);
                     printOutput(task.markUndone());
                 }
@@ -101,6 +107,13 @@ public class RaisinChat {
 
     }
 
+    /**
+     * Method to print string results with border, since border would be used
+     * in all printed responses
+     *
+     * @param data String to print from results/chatbot response
+     *
+     */
     public static void printOutput(String data) {
         System.out.println(BORDERS);
         System.out.println(data);

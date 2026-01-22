@@ -7,6 +7,12 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns result of marking task. If task has been marked before, notify
+     * user that task has already been completed
+     *
+     * @return String result
+     */
     public String markDone() {
         if (this.isDone) {
             return "This task was already marked as done in the past!";
@@ -17,6 +23,12 @@ public class Task {
         }
     }
 
+    /**
+     * Returns result of unmarking task. If task has not been marked, notify
+     * user that task has not been marked
+     *
+     * @return String result
+     */
     public String markUndone() {
         if (!this.isDone) {
             return "Oop... you actually haven't completed this task!";

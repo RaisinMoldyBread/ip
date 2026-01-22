@@ -106,7 +106,7 @@ public class RaisinChat {
                 Task newTodo = new Todo(arguments);
                 listOfTask.add(newTodo);
                 String res = String.format("Got it! I have added this task\n"
-                        + "  %s\n"
+                        + "\t%s\n"
                         + "Now you have %d tasks!",
                         newTodo.toString(),
                         listOfTask.size());
@@ -124,7 +124,7 @@ public class RaisinChat {
                 Task deadlineTask = new Deadline(nameTask, by);
                 listOfTask.add(deadlineTask);
                 String res = String.format("Got it! I have added this task\n"
-                        + "   %s\n"
+                        + "\t%s\n"
                         + "Now you have %d tasks!",
                         deadlineTask.toString(),
                         listOfTask.size());
@@ -150,7 +150,7 @@ public class RaisinChat {
                 Task eventTask = new Event(nameTask, startTime, endTime);
                 listOfTask.add(eventTask);
                 String res = String.format("Got it! I have added this task\n"
-                        + "   %s\n"
+                        + "\t%s\n"
                         + "Now you have %d tasks!",
                         eventTask.toString(),
                         listOfTask.size());

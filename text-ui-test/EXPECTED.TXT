@@ -20,7 +20,7 @@ bye/exit - Exit Chatbot :(
 ----------------------------------------------
 ----------------------------------------------
 Got it! I have added this task
-   [E][ ] meeting (from: Mon 2pm to: Mon 4pm)
+	[E][ ] meeting (from: Mon 2pm to: Mon 4pm)
 Now you have 1 tasks!
 ----------------------------------------------
 ----------------------------------------------
@@ -31,7 +31,7 @@ Here are the list of task right now:
 ----------------------------------------------
 Great job completing the task!
 I've gone ahead and mark it as done!
-    [E][X] meeting (from: Mon 2pm to: Mon 4pm)
+	[E][X] meeting (from: Mon 2pm to: Mon 4pm)
 ----------------------------------------------
 ----------------------------------------------
 Such task index does not exist!
@@ -42,16 +42,16 @@ Such task index does not exist!
 ----------------------------------------------
 Hmm... falling behind are we?
 I've unmarked the task as done!
-     [E][ ] meeting (from: Mon 2pm to: Mon 4pm)
+	[E][ ] meeting (from: Mon 2pm to: Mon 4pm)
 ----------------------------------------------
 ----------------------------------------------
 Got it! I have added this task
-   [D][ ] homework (by: Thurs 3pm)
+	[D][ ] homework (by: Thurs 3pm)
 Now you have 2 tasks!
 ----------------------------------------------
 ----------------------------------------------
 Got it! I have added this task
-  [T][ ] buy mangoes
+	[T][ ] buy mangoes
 Now you have 3 tasks!
 ----------------------------------------------
 ----------------------------------------------
@@ -64,7 +64,7 @@ Here are the list of task right now:
 ----------------------------------------------
 Great job completing the task!
 I've gone ahead and mark it as done!
-    [T][X] buy mangoes
+	[T][X] buy mangoes
 ----------------------------------------------
 ----------------------------------------------
 Here are the list of task right now:

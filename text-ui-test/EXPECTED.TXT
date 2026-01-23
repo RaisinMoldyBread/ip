@@ -14,6 +14,7 @@ help - List all commands available to chatbot
 todo [name of task] - Creates a todo task
 deadline [name of task] /by [deadline of task] - Creates task with deadline specified
 event [name of task] /from [start] /to [end] - Creates event task with start time and end time
+delete [Task index] - Deletes a task in the list
 mark [Task index] - Marks task at index specified to be done
 unmark [Task index] - Marks a task as not completed
 bye/exit - Exit Chatbot :(
@@ -92,6 +93,20 @@ Here are the list of task right now:
 1. [E][ ] meeting (from: Mon 2pm to: Mon 4pm)
 2. [D][ ] homework (by: Thurs 3pm)
 3. [T][X] buy mangoes
+
+----------------------------------------------
+----------------------------------------------
+Task index must be a number!
+----------------------------------------------
+----------------------------------------------
+Noted. I have removed this task:
+	[D][ ] homework (by: Thurs 3pm)
+You now have 2 tasks in the list!
+----------------------------------------------
+----------------------------------------------
+Here are the list of task right now:
+1. [E][ ] meeting (from: Mon 2pm to: Mon 4pm)
+2. [T][X] buy mangoes
 
 ----------------------------------------------
 ----------------------------------------------

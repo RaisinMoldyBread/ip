@@ -17,4 +17,7 @@ todo
 list
 mark 3
 list
+delete ten
+delete 2
+list
 bye

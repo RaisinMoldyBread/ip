@@ -23,12 +23,13 @@ public class RaisinChat {
             unmark [Task index] - Marks a task as not completed
             bye/exit - Exit Chatbot :(""";
     static List<Task> listOfTask = new ArrayList<>();
+
+
     public static void main(String[] args) {
         System.out.println(LOGO);
         String intro = String.format("Hello! I'm %s\n" +
                 "What can I do for you today?", CHATNAME);
         printOutput(intro);
-        boolean waitUser = true;
         Scanner scanner  = new Scanner(System.in);
         boolean shouldExit = false;
         while (!shouldExit) {

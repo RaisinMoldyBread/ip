@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -23,9 +27,10 @@ public class RaisinChat {
             unmark [Task index] - Marks a task as not completed
             bye/exit - Exit Chatbot :(""";
     static List<Task> listOfTask = new ArrayList<>();
-    static String dataLocation = "../../../data/RaisinChatTaskDb.txt";
+    public static final String DATALOCATION = "./data/RaisinChatTaskDb.txt";
 
     public static void main(String[] args) {
+        readDatabase(DATALOCATION);
         System.out.println(LOGO);
         String intro = String.format("Hello! I'm %s\n" +
                 "What can I do for you today?", CHATNAME);
@@ -38,6 +43,11 @@ public class RaisinChat {
             } catch (RaisinChatException e) {
                 printOutput(e.getMessage());
             }
+        }
+        try {
+            saveDatabase(listOfTask, DATALOCATION);
+        } catch (RaisinChatException e) {
+            printOutput(e.getMessage());
         }
 
     }
@@ -119,6 +129,81 @@ public class RaisinChat {
     }
 
     /**
+     * Method to attempt to read past saved task, if none exist, create one
+     *
+     * @param location Location of database of Task list to read
+     */
+    public static void readDatabase(String location) {
+        File taskFile = new File(location);
+
+        try {
+            File parentDir = taskFile.getParentFile();
+            if (parentDir != null && !parentDir.exists()) {
+                parentDir.mkdirs();
+            }
+
+            if (!taskFile.exists()) {
+                taskFile.createNewFile();
+                return; // nothing to read yet
+            }
+
+            try (Scanner fileReader = new Scanner(taskFile)) {
+                while (fileReader.hasNextLine()) {
+                    String data = fileReader.nextLine();
+                    String[] record = data.split("\\|");
+
+                    switch (record[0].trim()) {
+                        case "T":
+                            listOfTask.add(new Todo(
+                                    record[2].trim(),
+                                    record[1].trim().equals("1")));
+                            break;
+
+                        case "D":
+                            listOfTask.add(new Deadline(
+                                    record[2].trim(),
+                                    record[1].trim().equals("1"),
+                                    record[3].trim()));
+                            break;
+
+                        case "E":
+                            String[] times = record[3].split("-");
+                            listOfTask.add(new Event(
+                                    record[2].trim(),
+                                    record[1].trim().equals("1"),
+                                    times[0].trim(),
+                                    times[1].trim()));
+                            break;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            printOutput("Failed to read data storage :(");
+        }
+    }
+
+    /**
+     * Deletes past database of tasks and writes a new one
+     *
+     * @param taskData Current end-state of Tasks in the list saved by user
+     * @param location Location of database of Task list to save
+     * @throws RaisinChatException If application still fails to create data file
+     */
+    public static void saveDatabase(List<Task> taskData, String location) throws RaisinChatException {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(DATALOCATION))) {
+            for (int i = 0; i < listOfTask.size(); i++) {
+                bw.write(listOfTask.get(i).toString());
+                if (i < listOfTask.size() - 1) {
+                    bw.newLine();
+                }
+            }
+            printOutput("Successfully saved the file!");
+        } catch (IOException e) {
+            printOutput("An error occurred while trying to save your data! :(");
+        }
+    }
+
+    /**
      * Method to process Todo command
      *
      * @param arguments Task to add into the list
@@ -129,7 +214,7 @@ public class RaisinChat {
             throw new MissingArgException("todo <taskName>");
         }
 
-        Task newTodo = new Todo(arguments);
+        Task newTodo = new Todo(arguments, false);
         listOfTask.add(newTodo);
         String res = String.format("Got it! I have added this task\n"
                         + "\t%s\n"
@@ -164,7 +249,7 @@ public class RaisinChat {
         if (nameTask.isEmpty() || startTime.isEmpty() || endTime.isEmpty()) {
             throw new MissingArgException("event <taskName> /from <start> /to <end>");
         }
-        Task eventTask = new Event(nameTask, startTime, endTime);
+        Task eventTask = new Event(nameTask, false, startTime, endTime);
         listOfTask.add(eventTask);
         String res = String.format("Got it! I have added this task\n"
                         + "\t%s\n"
@@ -192,7 +277,7 @@ public class RaisinChat {
         if (nameTask.isEmpty() || by.isEmpty()) {
             throw new MissingArgException("deadline <taskName> /by <end>");
         }
-        Task deadlineTask = new Deadline(nameTask, by);
+        Task deadlineTask = new Deadline(nameTask, false, by);
         listOfTask.add(deadlineTask);
         String res = String.format("Got it! I have added this task\n"
                         + "\t%s\n"

@@ -2,9 +2,9 @@ public class Task {
     protected String taskName;
     protected Boolean isDone;
 
-    public Task(String initName) {
+    public Task(String initName, boolean haveDone) {
         this.taskName = initName;
-        this.isDone = false;
+        this.isDone = haveDone;
     }
 
     /**
@@ -45,7 +45,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.isDone ? String.format("[X] %s", this.taskName)
-                : String.format("[ ] %s", this.taskName);
+        return this.isDone ? String.format("1 | %s", this.taskName)
+                : String.format("0 | %s", this.taskName);
     }
 }

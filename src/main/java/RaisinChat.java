@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,11 +18,12 @@ public class RaisinChat {
             todo [name of task] - Creates a todo task
             deadline [name of task] /by [deadline of task] - Creates task with deadline specified
             event [name of task] /from [start] /to [end] - Creates event task with start time and end time
+            delete [Task index] - Deletes a task in the list
             mark [Task index] - Marks task at index specified to be done
             unmark [Task index] - Marks a task as not completed
             bye/exit - Exit Chatbot :(""";
     static List<Task> listOfTask = new ArrayList<>();
-
+    static String dataLocation = "../../../data/RaisinChatTaskDb.txt";
 
     public static void main(String[] args) {
         System.out.println(LOGO);
@@ -91,6 +91,10 @@ public class RaisinChat {
 
             case "deadline":
                 processDeadline(args);
+                return false;
+
+            case "delete":
+                processDelete(args);
                 return false;
 
             case "mark":
@@ -196,6 +200,42 @@ public class RaisinChat {
                 deadlineTask.toString(),
                 listOfTask.size());
         printOutput(res);
+    }
+
+    /**
+     * Method to process delete command
+     *
+     * @param arguments to process for deleting tasks based on list
+     * @throws MissingArgException if command is not used as delete <indexOfTask>
+     * @throws RaisinChatException if index of task does NOT exist or index is NOT a number
+     */
+    public static void processDelete(String arguments) throws RaisinChatException {
+        if (arguments.isBlank()) { // Checks if input contains an index
+            throw new MissingArgException("delete <indexOfTask>");
+        }
+
+        int index = -1;
+        try { // If second part of input is not number, throw error message to user
+            index = Integer.parseInt(arguments);
+
+        } catch (NumberFormatException e) {
+            throw new RaisinChatException("Task index must be a number!");
+        }
+
+        // If index supplied is not valid, throw error to user
+        if (index <= 0 || index > listOfTask.size()) {
+            throw new RaisinChatException("Such task index does not exist! Please check the list again!");
+        } else {
+            // Index is valid, proceed to delete task
+            Task task = listOfTask.get(index - 1);
+            listOfTask.remove(index - 1);
+            String res = String.format("Noted. I have removed this task:\n"
+                    + "\t%s\n"
+                    + "You now have %d tasks in the list!",
+                    task.toString(),
+                    listOfTask.size());
+            printOutput(res);
+        }
     }
 
     /**

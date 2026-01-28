@@ -44,11 +44,7 @@ public class RaisinChat {
                 printOutput(e.getMessage());
             }
         }
-        try {
-            saveDatabase(listOfTask, DATALOCATION);
-        } catch (RaisinChatException e) {
-            printOutput(e.getMessage());
-        }
+        saveDatabase(listOfTask, DATALOCATION);
 
     }
 
@@ -183,13 +179,12 @@ public class RaisinChat {
     }
 
     /**
-     * Deletes past database of tasks and writes a new one
+     * Overwrites old save of list of task from current session
      *
      * @param taskData Current end-state of Tasks in the list saved by user
      * @param location Location of database of Task list to save
-     * @throws RaisinChatException If application still fails to create data file
      */
-    public static void saveDatabase(List<Task> taskData, String location) throws RaisinChatException {
+    public static void saveDatabase(List<Task> taskData, String location) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(DATALOCATION))) {
             for (int i = 0; i < listOfTask.size(); i++) {
                 bw.write(listOfTask.get(i).toString());

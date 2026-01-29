@@ -5,6 +5,7 @@ import raisinchat.command.Command;
 import raisinchat.command.DeadlineCommand;
 import raisinchat.command.DeleteCommand;
 import raisinchat.command.EventCommand;
+import raisinchat.command.FindCommand;
 import raisinchat.command.HelpCommand;
 import raisinchat.command.ListCommand;
 import raisinchat.command.MarkCommand;
@@ -49,6 +50,9 @@ public class Parser {
 
         case "unmark":
             return new UnmarkCommand(Command.userCommand.UNMARK, args);
+
+        case "find":
+            return new FindCommand(Command.userCommand.FIND, args);
 
         case "bye":
             return new ByeCommand(Command.userCommand.BYE);

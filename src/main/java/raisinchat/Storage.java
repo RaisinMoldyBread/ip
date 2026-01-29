@@ -1,8 +1,5 @@
 package raisinchat;
 
-import raisinchat.exceptions.RaisinChatException;
-import raisinchat.task.*;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -11,6 +8,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import raisinchat.exceptions.RaisinChatException;
+import raisinchat.task.Deadline;
+import raisinchat.task.Event;
+import raisinchat.task.Task;
+import raisinchat.task.TaskList;
+import raisinchat.task.Todo;
 
 public class Storage {
 
@@ -44,30 +48,30 @@ public class Storage {
                         throw new RaisinChatException("Our data is corrupted! Resetting database :(");
                     }
                     switch (record[0].trim()) {
-                        case "T":
-                            listOfTask.add(new Todo(
-                                    record[2].trim(),
-                                    record[1].trim().equals("1")));
-                            break;
+                    case "T":
+                        listOfTask.add(new Todo(
+                                record[2].trim(),
+                                record[1].trim().equals("1")));
+                        break;
 
-                        case "D":
-                            listOfTask.add(new Deadline(
-                                    record[2].trim(),
-                                    record[1].trim().equals("1"),
-                                    LocalDateTime.parse(record[3].trim())));
-                            break;
+                    case "D":
+                        listOfTask.add(new Deadline(
+                                record[2].trim(),
+                                record[1].trim().equals("1"),
+                                LocalDateTime.parse(record[3].trim())));
+                        break;
 
-                        case "E":
-                            String[] times = record[3].split("->");
-                            listOfTask.add(new Event(
-                                    record[2].trim(),
-                                    record[1].trim().equals("1"),
-                                    LocalDateTime.parse(times[0].trim()),
-                                    LocalDateTime.parse(times[1].trim())));
-                            break;
+                    case "E":
+                        String[] times = record[3].split("->");
+                        listOfTask.add(new Event(
+                                record[2].trim(),
+                                record[1].trim().equals("1"),
+                                LocalDateTime.parse(times[0].trim()),
+                                LocalDateTime.parse(times[1].trim())));
+                        break;
 
-                        default:
-                            throw new RaisinChatException("Invalid data format! Resetting database :(");
+                    default:
+                        throw new RaisinChatException("Invalid data format! Resetting database :(");
                     }
                 }
             }

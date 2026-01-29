@@ -1,11 +1,11 @@
 package raisinchat.command;
 
+import raisinchat.Storage;
 import raisinchat.exceptions.MissingArgException;
 import raisinchat.exceptions.RaisinChatException;
-import raisinchat.Storage;
-import raisinchat.ui.Ui;
 import raisinchat.task.Task;
 import raisinchat.task.TaskList;
+import raisinchat.ui.Ui;
 
 public class UnmarkCommand extends Command {
 
@@ -23,8 +23,8 @@ public class UnmarkCommand extends Command {
     /**
      * Unmarks task as done as specified by index given in the user input
      *
-     * @param tasks Actual task list to process on
-     * @param ui raisinchat.ui.Ui class to execute user interaction methods
+     * @param tasks   Actual task list to process on
+     * @param ui      raisinchat.ui.Ui class to execute user interaction methods
      * @param storage raisinchat.Storage class object to work on
      * @throws MissingArgException if command is not used as delete <indexOfTask>
      * @throws RaisinChatException if index of task does NOT exist or index is NOT a number

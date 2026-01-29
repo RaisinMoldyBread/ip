@@ -1,16 +1,16 @@
 package raisinchat.command;
 
-import raisinchat.exceptions.MissingArgException;
-import raisinchat.Storage;
-import raisinchat.ui.Ui;
-import raisinchat.task.Event;
-import raisinchat.task.Task;
-import raisinchat.task.TaskList;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
+
+import raisinchat.Storage;
+import raisinchat.exceptions.MissingArgException;
+import raisinchat.task.Event;
+import raisinchat.task.Task;
+import raisinchat.task.TaskList;
+import raisinchat.ui.Ui;
 
 public class EventCommand extends Command {
 

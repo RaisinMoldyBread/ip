@@ -42,7 +42,7 @@ public class RaisinChat {
             }
         }
 
-        boolean isSaved =  this.storage.save(this.tasks);
+        boolean isSaved = this.storage.save(this.tasks);
         if (!isSaved) {
             System.out.println("Save failed");
         } else {
@@ -54,7 +54,6 @@ public class RaisinChat {
     public static void main(String[] args) {
         new RaisinChat(DATALOCATION).run();
     }
-
 
 
 }

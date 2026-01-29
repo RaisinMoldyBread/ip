@@ -1,9 +1,9 @@
 package raisinchat.command;
 
-import raisinchat.exceptions.RaisinChatException;
 import raisinchat.Storage;
-import raisinchat.ui.Ui;
+import raisinchat.exceptions.RaisinChatException;
 import raisinchat.task.TaskList;
+import raisinchat.ui.Ui;
 
 public abstract class Command {
     public enum userCommand {
@@ -26,5 +26,6 @@ public abstract class Command {
     }
 
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws RaisinChatException;
+
     public abstract boolean isExit();
 }

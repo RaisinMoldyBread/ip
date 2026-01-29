@@ -1,8 +1,8 @@
 package raisinchat.command;
 
 import raisinchat.Storage;
-import raisinchat.ui.Ui;
 import raisinchat.task.TaskList;
+import raisinchat.ui.Ui;
 
 public class ListCommand extends Command {
 

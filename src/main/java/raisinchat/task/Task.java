@@ -1,9 +1,18 @@
 package raisinchat.task;
 
+/**
+ * Abstraction of a Task which is inherited by other Task types
+ */
 public class Task {
     protected String taskName;
     protected Boolean isDone;
 
+    /**
+     * Creates the Task object
+     *
+     * @param initName of task
+     * @param haveDone false as default
+     */
     public Task(String initName, boolean haveDone) {
         this.taskName = initName;
         this.isDone = haveDone;
@@ -45,6 +54,11 @@ public class Task {
         }
     }
 
+    /**
+     * Supports child class fullString() method as some classes need this method to print the full datetime format
+     *
+     * @return normal string
+     */
     public String fullString() {
         return this.isDone ? String.format("1 | %s", this.taskName)
                 : String.format("0 | %s", this.taskName);

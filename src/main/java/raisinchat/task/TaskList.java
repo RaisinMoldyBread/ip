@@ -2,9 +2,17 @@ package raisinchat.task;
 
 import java.util.ArrayList;
 
+/**
+ * Abstraction of a database of Tasks that is currently used by the program
+ */
 public class TaskList {
     private ArrayList<Task> taskList;
 
+    /**
+     * Creates the TaskList object based on Storage class loading
+     *
+     * @param existingList of task if they exist, if not create a new one
+     */
     public TaskList(ArrayList<Task> existingList) {
         if (existingList == null) {
             this.taskList = new ArrayList<>();

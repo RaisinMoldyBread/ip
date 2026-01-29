@@ -1,6 +1,5 @@
 package raisinchat.command;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -23,7 +22,7 @@ public class MarkCommandTest {
      *
      */
     @Test
-    public void MarkCommandTest1() {
+    public void markCommandTest1() {
         String simulatedInput = "mark 1";
         Ui ui = new Ui();
         ArrayList<Task> taskLists = new ArrayList<>();
@@ -46,7 +45,7 @@ public class MarkCommandTest {
      *
      */
     @Test
-    public void MarkCommandTest2() {
+    public void markCommandTest2() {
         String simulatedInput = "mark 100000";
         Ui ui = new Ui();
         ArrayList<Task> taskLists = new ArrayList<>();
@@ -69,7 +68,7 @@ public class MarkCommandTest {
      *
      */
     @Test
-    public void MarkCommandTest3() {
+    public void markCommandTest3() {
         String simulatedInput = "mark ten";
         Ui ui = new Ui();
         ArrayList<Task> taskLists = new ArrayList<>();
@@ -92,7 +91,7 @@ public class MarkCommandTest {
      *
      */
     @Test
-    public void MarkCommandTest4() {
+    public void markCommandTest4() {
         try {
             Command c = Parser.parse("mark 1");
             assertFalse(c.isExit());

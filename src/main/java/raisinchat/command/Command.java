@@ -5,8 +5,16 @@ import raisinchat.exceptions.RaisinChatException;
 import raisinchat.task.TaskList;
 import raisinchat.ui.Ui;
 
+/**
+ * Command class that contains the abstract methods ALL command classes should have
+ * Enums of possible commands users can use
+ */
 public abstract class Command {
-    public enum userCommand {
+
+    /**
+     * Enum of commands that are available in this application
+     */
+    public enum UserCommand {
         HELP,
         LIST,
         EXIT,
@@ -19,9 +27,9 @@ public abstract class Command {
         UNMARK
     }
 
-    private userCommand inputCommand;
+    private UserCommand inputCommand;
 
-    public Command(userCommand command) {
+    public Command(UserCommand command) {
         this.inputCommand = command;
     }
 

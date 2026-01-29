@@ -13,8 +13,18 @@ import raisinchat.command.UnmarkCommand;
 import raisinchat.exceptions.RaisinChatException;
 import raisinchat.exceptions.UnkownCommandException;
 
+/**
+ * Abstraction of parsing inputs given by user
+ */
 public class Parser {
 
+    /**
+     * Parses the full string command from the Ui class that reads the user input
+     *
+     * @param command The actual command given by the user to parse
+     * @return Command object that correctly abstracts the command given, allowing for further finer execution
+     * @throws RaisinChatException if given command is empty
+     */
     public static Command parse(String command) throws RaisinChatException {
         String input = command.trim();
         if (input.isEmpty()) {
@@ -27,34 +37,34 @@ public class Parser {
 
         switch (commandAction) {
         case "help":
-            return new HelpCommand(Command.userCommand.HELP);
+            return new HelpCommand(Command.UserCommand.HELP);
 
         case "list":
-            return new ListCommand(Command.userCommand.LIST);
+            return new ListCommand(Command.UserCommand.LIST);
 
         case "todo":
-            return new TodoCommand(Command.userCommand.TODO, args);
+            return new TodoCommand(Command.UserCommand.TODO, args);
 
         case "event":
-            return new EventCommand(Command.userCommand.EVENT, args);
+            return new EventCommand(Command.UserCommand.EVENT, args);
 
         case "deadline":
-            return new DeadlineCommand(Command.userCommand.DEADLINE, args);
+            return new DeadlineCommand(Command.UserCommand.DEADLINE, args);
 
         case "delete":
-            return new DeleteCommand(Command.userCommand.DELETE, args);
+            return new DeleteCommand(Command.UserCommand.DELETE, args);
 
         case "mark":
-            return new MarkCommand(Command.userCommand.MARK, args);
+            return new MarkCommand(Command.UserCommand.MARK, args);
 
         case "unmark":
-            return new UnmarkCommand(Command.userCommand.UNMARK, args);
+            return new UnmarkCommand(Command.UserCommand.UNMARK, args);
 
         case "bye":
-            return new ByeCommand(Command.userCommand.BYE);
+            return new ByeCommand(Command.UserCommand.BYE);
 
         case "exit":
-            return new ByeCommand(Command.userCommand.EXIT);
+            return new ByeCommand(Command.UserCommand.EXIT);
 
         default:
             throw new UnkownCommandException(commandAction);

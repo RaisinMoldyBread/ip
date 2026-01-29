@@ -7,11 +7,22 @@ import raisinchat.task.Task;
 import raisinchat.task.TaskList;
 import raisinchat.ui.Ui;
 
+/**
+ * Abstraction of the Mark command for the application, triggered by "mark" command
+ * Executing this command will mark a given task as done based on index given in extraArgs
+ */
 public class MarkCommand extends Command {
 
     private String extraArgs;
 
-    public MarkCommand(userCommand command, String extraArgs) {
+    /**
+     * Creation of the Mark command class object
+     *
+     * @param command The actual enum command that was used by the user
+     * @param extraArgs The additional arguments needed to mark the task based on index number of the current list as
+     *                  done
+     */
+    public MarkCommand(UserCommand command, String extraArgs) {
         super(command);
         this.extraArgs = extraArgs;
     }
@@ -26,7 +37,7 @@ public class MarkCommand extends Command {
      * @param tasks   Actual task list to process on
      * @param ui      raisinchat.ui.Ui class to execute user interaction methods
      * @param storage raisinchat.Storage class object to work on
-     * @throws MissingArgException if command is not used as delete <indexOfTask>
+     * @throws MissingArgException if command is not used as delete [indexOfTask]
      * @throws RaisinChatException if index of task does NOT exist or index is NOT a number
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws RaisinChatException {

@@ -18,7 +18,7 @@ public class EventCommandTest {
      *
      */
     @Test
-    public void EventCommandTest1() {
+    public void eventCommandTest1() {
         String simulatedInput = "event watch coldplay /from 2026-01-02 10:00 AM /to 2026-01-02 11:00 PM";
         Ui ui = new Ui();
         TaskList tasks = new TaskList(null);
@@ -30,7 +30,7 @@ public class EventCommandTest {
                     tasks.getTasks(0).toString());
         } catch (RaisinChatException e) {
             assertEquals("Hmm, you are doing it wrong! Use command like this: event <taskName> "
-                    + "/from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>",
+                            + "/from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>",
                     e.getMessage());
         }
 
@@ -41,7 +41,7 @@ public class EventCommandTest {
      *
      */
     @Test
-    public void EventCommandTest2() {
+    public void eventCommandTest2() {
         String simulatedInput = "event /from 2026-01-02 10:00 AM /to 2026-01-02 11:00 PM";
         Ui ui = new Ui();
         TaskList tasks = new TaskList(null);
@@ -64,7 +64,7 @@ public class EventCommandTest {
      *
      */
     @Test
-    public void EventCommandTest3() {
+    public void eventCommandTest3() {
         String simulatedInput = "event watch coldplay /from /to 2026-01-02 11:00 PM";
         Ui ui = new Ui();
         TaskList tasks = new TaskList(null);
@@ -87,7 +87,7 @@ public class EventCommandTest {
      *
      */
     @Test
-    public void EventCommandTest4() {
+    public void eventCommandTest4() {
         try {
             Command c = Parser.parse("event watch coldplay /from /to 2026-01-02 11:00 PM");
             assertFalse(c.isExit());

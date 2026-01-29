@@ -4,12 +4,20 @@ import raisinchat.Storage;
 import raisinchat.task.TaskList;
 import raisinchat.ui.Ui;
 
+/**
+ * Abstraction of the exit command for the application, triggered by "bye" or "exit" command
+ */
 public class ByeCommand extends Command {
 
-    public ByeCommand(userCommand command) {
+    public ByeCommand(UserCommand command) {
         super(command);
     }
 
+    /**
+     * Returns if the program should exit after given this command
+     *
+     * @return true always
+     */
     public boolean isExit() {
         return true;
     }

@@ -1,3 +1,5 @@
+package raisinchat.exceptions;
+
 public class UnkownCommandException extends RaisinChatException{
 
     public UnkownCommandException(String command) {

@@ -1,3 +1,9 @@
+package raisinchat.command;
+
+import raisinchat.Storage;
+import raisinchat.ui.Ui;
+import raisinchat.task.TaskList;
+
 public class ByeCommand extends Command {
 
     public ByeCommand(userCommand command) {

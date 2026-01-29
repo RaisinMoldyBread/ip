@@ -1,3 +1,5 @@
+package raisinchat.task;
+
 public class Todo extends Task {
 
     public Todo(String name, boolean haveDone) {

@@ -1,3 +1,10 @@
+package raisinchat;
+
+import raisinchat.command.Command;
+import raisinchat.exceptions.RaisinChatException;
+import raisinchat.task.TaskList;
+import raisinchat.ui.Ui;
+
 public class RaisinChat {
 
     public static final String DATALOCATION = "./data/RaisinChatTaskDb.txt";

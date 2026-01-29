@@ -27,6 +27,10 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public void showLine() {
+        System.out.println(LINE);
+    }
+
     public void showLoadingError() {
         System.out.println("Oh no... we are unable to read your past data :\")");
     }

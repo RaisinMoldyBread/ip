@@ -1,5 +1,12 @@
+package raisinchat.command;
+
+import raisinchat.exceptions.RaisinChatException;
+import raisinchat.Storage;
+import raisinchat.ui.Ui;
+import raisinchat.task.TaskList;
+
 public abstract class Command {
-    protected enum userCommand {
+    public enum userCommand {
         HELP,
         LIST,
         EXIT,

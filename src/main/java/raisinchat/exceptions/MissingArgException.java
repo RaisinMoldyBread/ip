@@ -1,3 +1,5 @@
+package raisinchat.exceptions;
+
 public class MissingArgException extends RaisinChatException {
 
     public MissingArgException(String usage) {

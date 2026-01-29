@@ -1,3 +1,9 @@
+package raisinchat.command;
+
+import raisinchat.Storage;
+import raisinchat.ui.Ui;
+import raisinchat.task.TaskList;
+
 public class HelpCommand extends Command {
 
     private static final String HELPSTRING = """

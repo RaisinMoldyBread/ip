@@ -1,3 +1,12 @@
+package raisinchat.command;
+
+import raisinchat.exceptions.MissingArgException;
+import raisinchat.Storage;
+import raisinchat.ui.Ui;
+import raisinchat.task.Task;
+import raisinchat.task.TaskList;
+import raisinchat.task.Todo;
+
 public class TodoCommand extends Command {
 
     private String extraArgs;

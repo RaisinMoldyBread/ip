@@ -1,3 +1,8 @@
+package raisinchat;
+
+import raisinchat.exceptions.RaisinChatException;
+import raisinchat.task.*;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

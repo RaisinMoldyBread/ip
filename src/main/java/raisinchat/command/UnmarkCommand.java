@@ -1,8 +1,17 @@
-public class DeleteCommand extends Command {
+package raisinchat.command;
+
+import raisinchat.exceptions.MissingArgException;
+import raisinchat.exceptions.RaisinChatException;
+import raisinchat.Storage;
+import raisinchat.ui.Ui;
+import raisinchat.task.Task;
+import raisinchat.task.TaskList;
+
+public class UnmarkCommand extends Command {
 
     private String extraArgs;
 
-    public DeleteCommand(userCommand command, String extraArgs) {
+    public UnmarkCommand(userCommand command, String extraArgs) {
         super(command);
         this.extraArgs = extraArgs;
     }
@@ -12,23 +21,22 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Deletes specified task based on index given
+     * Unmarks task as done as specified by index given in the user input
      *
-     * @param tasks Actual task list to process delete on
-     * @param ui Ui class to execute user interaction methods
-     * @param storage Storage class object to work on
+     * @param tasks Actual task list to process on
+     * @param ui raisinchat.ui.Ui class to execute user interaction methods
+     * @param storage raisinchat.Storage class object to work on
      * @throws MissingArgException if command is not used as delete <indexOfTask>
      * @throws RaisinChatException if index of task does NOT exist or index is NOT a number
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws RaisinChatException {
         if (this.extraArgs.isBlank()) { // Checks if input contains an index
-            throw new MissingArgException("delete <indexOfTask>");
+            throw new MissingArgException("unmark <indexOfTask>");
         }
 
         int index = -1;
         try { // If second part of input is not number, throw error message to user
             index = Integer.parseInt(this.extraArgs);
-
         } catch (NumberFormatException e) {
             throw new RaisinChatException("Task index must be a number!");
         }
@@ -37,15 +45,9 @@ public class DeleteCommand extends Command {
         if (index <= 0 || index > tasks.size()) {
             throw new RaisinChatException("Such task index does not exist! Please check the list again!");
         } else {
-            // Index is valid, proceed to delete task
+            // Index is valid, proceed to unmark task
             Task task = tasks.getTasks(index - 1);
-            tasks.deleteTask(task);
-            String res = String.format("Noted. I have removed this task:\n"
-                            + "\t%s\n"
-                            + "You now have %d tasks in the list!",
-                    task.toString(),
-                    tasks.size());
-            ui.showMessage(res);
+            ui.showMessage(task.markUndone());
         }
     }
 }

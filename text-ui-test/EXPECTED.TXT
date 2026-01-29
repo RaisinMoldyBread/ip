@@ -12,33 +12,37 @@ What can I do for you today?
 list - List all available tasks
 help - List all commands available to chatbot
 todo [name of task] - Creates a todo task
-deadline [name of task] /by [deadline of task] - Creates task with deadline specified
-event [name of task] /from [start] /to [end] - Creates event task with start time and end time
+deadline [name of task] /by [yyyy-MM-dd hh:mm AM/PM] - Creates task with deadline specified
+event [name of task] /from [yyyy-MM-dd hh:mm AM/PM] /to [yyyy-MM-dd hh:mm AM/PM] - Creates event task with start time and end time
 delete [Task index] - Deletes a task in the list
 mark [Task index] - Marks task at index specified to be done
 unmark [Task index] - Marks a task as not completed
 bye/exit - Exit Chatbot :(
 ----------------------------------------------
+End time must be after start time.
+----------------------------------------------
+Hmm, you are doing it wrong! Use command like this: event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>
+----------------------------------------------
 ----------------------------------------------
 Got it! I have added this task
-	[E][ ] meeting (from: Mon 2pm to: Mon 4pm)
+	E | 0 | meeting | Jan 3 2026 10:00 am -> Jan 3 2026 12:00 pm
 Now you have 1 tasks!
 ----------------------------------------------
 ----------------------------------------------
-Hmm, you are doing it wrong! Use command like this: event <taskName> /from <start> /to <end>
+Hmm, you are doing it wrong! Use command like this: event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>
 ----------------------------------------------
 ----------------------------------------------
-Hmm, you are doing it wrong! Use command like this: event <taskName> /from <start> /to <end>
+Hmm, you are doing it wrong! Use command like this: event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>
 ----------------------------------------------
 ----------------------------------------------
 Here are the list of task right now:
-1. [E][ ] meeting (from: Mon 2pm to: Mon 4pm)
+1. E | 0 | meeting | Jan 3 2026 10:00 am -> Jan 3 2026 12:00 pm
 
 ----------------------------------------------
 ----------------------------------------------
 Great job completing the task!
 I've gone ahead and mark it as done!
-	[E][X] meeting (from: Mon 2pm to: Mon 4pm)
+	E | 1 | meeting | Jan 3 2026 10:00 am -> Jan 3 2026 12:00 pm
 ----------------------------------------------
 ----------------------------------------------
 Such task index does not exist! Please check the list again!
@@ -52,25 +56,28 @@ Such task index does not exist! Please check the list again!
 ----------------------------------------------
 Hmm... falling behind are we?
 I've unmarked the task as done!
-	[E][ ] meeting (from: Mon 2pm to: Mon 4pm)
+	E | 0 | meeting | Jan 3 2026 10:00 am -> Jan 3 2026 12:00 pm
 ----------------------------------------------
 ----------------------------------------------
 Task index must be a number!
 ----------------------------------------------
 ----------------------------------------------
 Got it! I have added this task
-	[D][ ] homework (by: Thurs 3pm)
+	D | 0 | homework | Jan 2 2026 10:00 pm
 Now you have 2 tasks!
 ----------------------------------------------
 ----------------------------------------------
-Hmm, you are doing it wrong! Use command like this: deadline <taskName> /by <end>
+Hmm, you are doing it wrong! Use command like this: deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>
 ----------------------------------------------
 ----------------------------------------------
-Hmm, you are doing it wrong! Use command like this: deadline <taskName> /by <end>
+Hmm, you are doing it wrong! Use command like this: deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>
+----------------------------------------------
+----------------------------------------------
+Hmm, you are doing it wrong! Use command like this: deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>
 ----------------------------------------------
 ----------------------------------------------
 Got it! I have added this task
-	[T][ ] buy mangoes
+	T | 0 | buy mangoes
 Now you have 3 tasks!
 ----------------------------------------------
 ----------------------------------------------
@@ -78,21 +85,21 @@ Hmm, you are doing it wrong! Use command like this: todo <taskName>
 ----------------------------------------------
 ----------------------------------------------
 Here are the list of task right now:
-1. [E][ ] meeting (from: Mon 2pm to: Mon 4pm)
-2. [D][ ] homework (by: Thurs 3pm)
-3. [T][ ] buy mangoes
+1. E | 0 | meeting | Jan 3 2026 10:00 am -> Jan 3 2026 12:00 pm
+2. D | 0 | homework | Jan 2 2026 10:00 pm
+3. T | 0 | buy mangoes
 
 ----------------------------------------------
 ----------------------------------------------
 Great job completing the task!
 I've gone ahead and mark it as done!
-	[T][X] buy mangoes
+	T | 1 | buy mangoes
 ----------------------------------------------
 ----------------------------------------------
 Here are the list of task right now:
-1. [E][ ] meeting (from: Mon 2pm to: Mon 4pm)
-2. [D][ ] homework (by: Thurs 3pm)
-3. [T][X] buy mangoes
+1. E | 0 | meeting | Jan 3 2026 10:00 am -> Jan 3 2026 12:00 pm
+2. D | 0 | homework | Jan 2 2026 10:00 pm
+3. T | 1 | buy mangoes
 
 ----------------------------------------------
 ----------------------------------------------
@@ -100,15 +107,18 @@ Task index must be a number!
 ----------------------------------------------
 ----------------------------------------------
 Noted. I have removed this task:
-	[D][ ] homework (by: Thurs 3pm)
+	D | 0 | homework | Jan 2 2026 10:00 pm
 You now have 2 tasks in the list!
 ----------------------------------------------
 ----------------------------------------------
 Here are the list of task right now:
-1. [E][ ] meeting (from: Mon 2pm to: Mon 4pm)
-2. [T][X] buy mangoes
+1. E | 0 | meeting | Jan 3 2026 10:00 am -> Jan 3 2026 12:00 pm
+2. T | 1 | buy mangoes
 
 ----------------------------------------------
 ----------------------------------------------
 Bye :") Please come back again :")
+----------------------------------------------
+----------------------------------------------
+Successfully saved the file!
 ----------------------------------------------

@@ -24,6 +24,8 @@ public class HelpCommand extends Command {
             - Creates event task with start and end time
         delete [task index]
             - Deletes a task in the list
+        find [keyword]
+            - Finds tasks that contains provided keyword
         mark [task index]
             - Marks task at index specified as done
         unmark [task index]

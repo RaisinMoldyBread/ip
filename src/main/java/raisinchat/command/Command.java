@@ -24,7 +24,8 @@ public abstract class Command {
         DEADLINE,
         DELETE,
         MARK,
-        UNMARK
+        UNMARK,
+        FIND
     }
 
     private UserCommand inputCommand;

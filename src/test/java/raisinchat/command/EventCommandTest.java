@@ -30,7 +30,7 @@ public class EventCommandTest {
                     tasks.getTasks(0).toString());
         } catch (RaisinChatException e) {
             assertEquals("Hmm, you are doing it wrong! Use command like this: event <taskName> "
-                    + "/from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>",
+                            + "/from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>",
                     e.getMessage());
         }
 

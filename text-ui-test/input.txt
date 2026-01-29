@@ -22,4 +22,8 @@ list
 delete ten
 delete 2
 list
+find homework
+find mangoes
+find meeting
+find
 bye

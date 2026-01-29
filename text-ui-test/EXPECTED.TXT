@@ -22,6 +22,8 @@ event [name of task] /from [yyyy-MM-dd hh:mm AM/PM] /to [yyyy-MM-dd hh:mm AM/PM]
     - Creates event task with start and end time
 delete [task index]
     - Deletes a task in the list
+find [keyword]
+    - Finds tasks that contains provided keyword
 mark [task index]
     - Marks task at index specified as done
 unmark [task index]
@@ -125,6 +127,23 @@ Here are the list of task right now:
 1. E | 0 | meeting | Jan 3 2026 10:00 am -> Jan 3 2026 12:00 pm
 2. T | 1 | buy mangoes
 
+___________________________________________
+___________________________________________
+Here are the matching tasks in your list right now:
+
+___________________________________________
+___________________________________________
+Here are the matching tasks in your list right now:
+1. T | 1 | buy mangoes
+
+___________________________________________
+___________________________________________
+Here are the matching tasks in your list right now:
+1. E | 0 | meeting | Jan 3 2026 10:00 am -> Jan 3 2026 12:00 pm
+
+___________________________________________
+___________________________________________
+Hmm, you are doing it wrong! Use command like this: find <keyword>
 ___________________________________________
 ___________________________________________
 Bye :( Please come back again soon :")

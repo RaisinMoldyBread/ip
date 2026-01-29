@@ -2,6 +2,9 @@ package raisinchat.ui;
 
 import java.util.Scanner;
 
+/**
+ * Abstraction of the interaction with the User
+ */
 public class Ui {
 
     private static final String CHATNAME = "RaisinChat";
@@ -23,6 +26,11 @@ public class Ui {
         return scanner.nextLine();
     }
 
+    /**
+     * Prints the standard message format for a given message
+     *
+     * @param message to print in the application's standard message format
+     */
     public void showMessage(String message) {
         System.out.println(LINE);
         System.out.println(message);
@@ -37,10 +45,13 @@ public class Ui {
         System.out.println("Oh no... we are unable to read your past data :\")");
     }
 
+    /**
+     * Prints the welcome message and logo of the application
+     */
     public void showWelcome() {
         System.out.println(LOGO);
-        String intro = String.format("Hello! I'm %s\n" +
-                "What can I do for you today?", CHATNAME);
+        String intro = String.format("Hello! I'm %s\n"
+                + "What can I do for you today?", CHATNAME);
         showMessage(intro);
     }
 

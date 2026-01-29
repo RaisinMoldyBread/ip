@@ -12,13 +12,23 @@ import raisinchat.task.Task;
 import raisinchat.task.TaskList;
 import raisinchat.ui.Ui;
 
+/**
+ * Abstraction of the Deadline command for the application, triggered by "deadline" command
+ */
 public class DeadlineCommand extends Command {
 
-    private String extraArgs;
-    private final static DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
+    private static final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
             Locale.ENGLISH);
+    private String extraArgs;
 
-    public DeadlineCommand(userCommand command, String extraArgs) {
+    /**
+     * Creation of the Deadline command class object
+     *
+     * @param command The actual enum command that was used by the user
+     * @param extraArgs The additional arguments needed to construct the actual Deadline task
+     *                  which includes the task name and the deadline
+     */
+    public DeadlineCommand(UserCommand command, String extraArgs) {
         super(command);
         this.extraArgs = extraArgs;
     }
@@ -27,6 +37,15 @@ public class DeadlineCommand extends Command {
         return false;
     }
 
+    /**
+     * Method that triggers the execution of the command inputted for deadline
+     * Checks for relevant arguments
+     *
+     * @param tasks   Actual task list to process on
+     * @param ui      Ui class to execute user interaction methods
+     * @param storage Storage class object to work on
+     * @throws MissingArgException if command is not used as deadline [taskName] /by [yyyy-MM-dd hh:mm AM/PM]
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws MissingArgException {
         String[] getDeadline = this.extraArgs.split("/by", 2);
         // We split using /by so that we can extract deadline time
@@ -45,7 +64,7 @@ public class DeadlineCommand extends Command {
             String res = String.format("Got it! I have added this task\n"
                             + "\t%s\n"
                             + "Now you have %d tasks!",
-                    deadlineTask.toString(),
+                    deadlineTask,
                     tasks.size());
             ui.showMessage(res);
 

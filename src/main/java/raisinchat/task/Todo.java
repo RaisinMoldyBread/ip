@@ -1,5 +1,8 @@
 package raisinchat.task;
 
+/**
+ * Abstraction of a Todo task (Mostly similar with parent Task class)
+ */
 public class Todo extends Task {
 
     public Todo(String name, boolean haveDone) {

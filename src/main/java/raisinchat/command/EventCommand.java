@@ -12,13 +12,24 @@ import raisinchat.task.Task;
 import raisinchat.task.TaskList;
 import raisinchat.ui.Ui;
 
+/**
+ * Abstraction of the Event command for the application, triggered by "event" command
+ * Executing this command will create the Event task
+ */
 public class EventCommand extends Command {
 
-    private String extraArgs;
-    private final static DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
+    private static final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
             Locale.ENGLISH);
+    private String extraArgs;
 
-    public EventCommand(userCommand command, String extraArgs) {
+    /**
+     * Creation of the Event command class object
+     *
+     * @param command The actual enum command that was used by the user
+     * @param extraArgs The additional arguments needed to create the actual Event task
+     *                  which includes the task name, start datetime and end datetime
+     */
+    public EventCommand(UserCommand command, String extraArgs) {
         super(command);
         this.extraArgs = extraArgs;
     }
@@ -27,6 +38,16 @@ public class EventCommand extends Command {
         return false;
     }
 
+    /**
+     * Method that triggers the execution of the command inputted for event
+     * Checks for relevant arguments
+     *
+     * @param tasks   Actual task list to process on
+     * @param ui      Ui class to execute user interaction methods
+     * @param storage Storage class object to work on
+     * @throws MissingArgException if command is not used as event [taskName] /from [yyyy-MM-dd hh:mm AM/PM]
+     *                              /to [yyyy-MM-dd hh:mm AM/PM]
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws MissingArgException {
         String[] splitArgs = this.extraArgs.split("/from", 2);
         // We split using /from first to get task name

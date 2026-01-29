@@ -7,11 +7,22 @@ import raisinchat.task.Task;
 import raisinchat.task.TaskList;
 import raisinchat.ui.Ui;
 
+/**
+ * Abstraction of the delete command for the application, triggered by "delete" command
+ * Executing this command will delete said task based on input index
+ */
 public class DeleteCommand extends Command {
 
     private String extraArgs;
 
-    public DeleteCommand(userCommand command, String extraArgs) {
+    /**
+     * Creation of the Delete command class object
+     *
+     * @param command The actual enum command that was used by the user
+     * @param extraArgs The additional arguments needed to delete the task from the list
+     *                  in a form of an Integer
+     */
+    public DeleteCommand(UserCommand command, String extraArgs) {
         super(command);
         this.extraArgs = extraArgs;
     }
@@ -26,7 +37,7 @@ public class DeleteCommand extends Command {
      * @param tasks   Actual task list to process delete on
      * @param ui      raisinchat.ui.Ui class to execute user interaction methods
      * @param storage raisinchat.Storage class object to work on
-     * @throws MissingArgException if command is not used as delete <indexOfTask>
+     * @throws MissingArgException if command is not used as delete [indexOfTask]
      * @throws RaisinChatException if index of task does NOT exist or index is NOT a number
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws RaisinChatException {

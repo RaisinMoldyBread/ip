@@ -14,11 +14,11 @@ import raisinchat.ui.Ui;
 
 public class EventCommand extends Command {
 
-    private String extraArgs;
-    private final static DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
+    private static final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
             Locale.ENGLISH);
+    private String extraArgs;
 
-    public EventCommand(userCommand command, String extraArgs) {
+    public EventCommand(UserCommand command, String extraArgs) {
         super(command);
         this.extraArgs = extraArgs;
     }

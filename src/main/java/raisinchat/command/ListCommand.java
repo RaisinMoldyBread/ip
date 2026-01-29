@@ -6,7 +6,7 @@ import raisinchat.ui.Ui;
 
 public class ListCommand extends Command {
 
-    public ListCommand(userCommand command) {
+    public ListCommand(UserCommand command) {
         super(command);
     }
 

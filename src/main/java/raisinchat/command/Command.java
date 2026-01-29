@@ -6,7 +6,7 @@ import raisinchat.task.TaskList;
 import raisinchat.ui.Ui;
 
 public abstract class Command {
-    public enum userCommand {
+    public enum UserCommand {
         HELP,
         LIST,
         EXIT,
@@ -19,9 +19,9 @@ public abstract class Command {
         UNMARK
     }
 
-    private userCommand inputCommand;
+    private UserCommand inputCommand;
 
-    public Command(userCommand command) {
+    public Command(UserCommand command) {
         this.inputCommand = command;
     }
 

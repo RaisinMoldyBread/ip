@@ -11,7 +11,7 @@ public class DeleteCommand extends Command {
 
     private String extraArgs;
 
-    public DeleteCommand(userCommand command, String extraArgs) {
+    public DeleteCommand(UserCommand command, String extraArgs) {
         super(command);
         this.extraArgs = extraArgs;
     }

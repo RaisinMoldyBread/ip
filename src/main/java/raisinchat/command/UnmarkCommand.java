@@ -11,7 +11,7 @@ public class UnmarkCommand extends Command {
 
     private String extraArgs;
 
-    public UnmarkCommand(userCommand command, String extraArgs) {
+    public UnmarkCommand(UserCommand command, String extraArgs) {
         super(command);
         this.extraArgs = extraArgs;
     }

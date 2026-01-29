@@ -6,7 +6,7 @@ import raisinchat.ui.Ui;
 
 public class ByeCommand extends Command {
 
-    public ByeCommand(userCommand command) {
+    public ByeCommand(UserCommand command) {
         super(command);
     }
 

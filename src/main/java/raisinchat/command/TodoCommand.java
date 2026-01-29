@@ -11,7 +11,7 @@ public class TodoCommand extends Command {
 
     private String extraArgs;
 
-    public TodoCommand(userCommand command, String extraArgs) {
+    public TodoCommand(UserCommand command, String extraArgs) {
         super(command);
         this.extraArgs = extraArgs;
     }

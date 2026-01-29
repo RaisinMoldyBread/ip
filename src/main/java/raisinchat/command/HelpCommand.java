@@ -17,7 +17,7 @@ public class HelpCommand extends Command {
             unmark [Task index] - Marks a task as not completed
             bye/exit - Exit Chatbot :(""";
 
-    public HelpCommand(userCommand command) {
+    public HelpCommand(UserCommand command) {
         super(command);
     }
 

@@ -39,8 +39,8 @@ public class Ui {
 
     public void showWelcome() {
         System.out.println(LOGO);
-        String intro = String.format("Hello! I'm %s\n" +
-                "What can I do for you today?", CHATNAME);
+        String intro = String.format("Hello! I'm %s\n"
+                + "What can I do for you today?", CHATNAME);
         showMessage(intro);
     }
 

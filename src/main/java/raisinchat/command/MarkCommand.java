@@ -11,7 +11,7 @@ public class MarkCommand extends Command {
 
     private String extraArgs;
 
-    public MarkCommand(userCommand command, String extraArgs) {
+    public MarkCommand(UserCommand command, String extraArgs) {
         super(command);
         this.extraArgs = extraArgs;
     }

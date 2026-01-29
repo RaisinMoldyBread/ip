@@ -14,11 +14,11 @@ import raisinchat.ui.Ui;
 
 public class DeadlineCommand extends Command {
 
-    private String extraArgs;
-    private final static DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
+    private static final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
             Locale.ENGLISH);
+    private String extraArgs;
 
-    public DeadlineCommand(userCommand command, String extraArgs) {
+    public DeadlineCommand(UserCommand command, String extraArgs) {
         super(command);
         this.extraArgs = extraArgs;
     }

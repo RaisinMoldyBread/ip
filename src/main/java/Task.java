@@ -43,6 +43,11 @@ public class Task {
         }
     }
 
+    public String fullString() {
+        return this.isDone ? String.format("1 | %s", this.taskName)
+                : String.format("0 | %s", this.taskName);
+    }
+
     @Override
     public String toString() {
         return this.isDone ? String.format("1 | %s", this.taskName)

@@ -2,12 +2,15 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class RaisinChat {
-    public static final String CHATNAME = "RaisinChat";
     public static final String LOGO = "__________        .__       .__       _________ .__            __   \n"
             + "\\______   \\_____  |__| _____|__| ____ \\_   ___ \\|  |__ _____ _/  |_ \n"
             + " |       _/\\__  \\ |  |/  ___/  |/    \\/    \\  \\/|  |  \\\\__  \\\\   __\\\n"
@@ -16,18 +19,20 @@ public class RaisinChat {
             + "        \\/      \\/        \\/        \\/        \\/     \\/     \\/      ";
 
     public static final String BORDERS = "----------------------------------------------";
+    public static final String CHATNAME = "RaisinChat";
+    public static final String DATALOCATION = "./data/RaisinChatTaskDb.txt";
     public static final String HELPSTRING = """
             list - List all available tasks
             help - List all commands available to chatbot
             todo [name of task] - Creates a todo task
-            deadline [name of task] /by [deadline of task] - Creates task with deadline specified
-            event [name of task] /from [start] /to [end] - Creates event task with start time and end time
+            deadline [name of task] /by [yyyy-MM-dd hh:mm AM/PM] - Creates task with deadline specified
+            event [name of task] /from [yyyy-MM-dd hh:mm AM/PM] /to [yyyy-MM-dd hh:mm AM/PM] - Creates event task with start time and end time
             delete [Task index] - Deletes a task in the list
             mark [Task index] - Marks task at index specified to be done
             unmark [Task index] - Marks a task as not completed
             bye/exit - Exit Chatbot :(""";
     static List<Task> listOfTask = new ArrayList<>();
-    public static final String DATALOCATION = "./data/RaisinChatTaskDb.txt";
+    static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a", Locale.ENGLISH);
 
     public static void main(String[] args) {
         readDatabase(DATALOCATION);
@@ -159,16 +164,16 @@ public class RaisinChat {
                             listOfTask.add(new Deadline(
                                     record[2].trim(),
                                     record[1].trim().equals("1"),
-                                    record[3].trim()));
+                                    LocalDateTime.parse(record[3].trim())));
                             break;
 
                         case "E":
-                            String[] times = record[3].split("-");
+                            String[] times = record[3].split("->");
                             listOfTask.add(new Event(
                                     record[2].trim(),
                                     record[1].trim().equals("1"),
-                                    times[0].trim(),
-                                    times[1].trim()));
+                                    LocalDateTime.parse(times[0].trim()),
+                                    LocalDateTime.parse(times[1].trim())));
                             break;
                     }
                 }
@@ -187,7 +192,7 @@ public class RaisinChat {
     public static void saveDatabase(List<Task> taskData, String location) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(DATALOCATION))) {
             for (int i = 0; i < listOfTask.size(); i++) {
-                bw.write(listOfTask.get(i).toString());
+                bw.write(listOfTask.get(i).fullString());
                 if (i < listOfTask.size() - 1) {
                     bw.newLine();
                 }
@@ -224,62 +229,86 @@ public class RaisinChat {
      * Method to process event command
      *
      * @param arguments to process for adding events
-     * @throws MissingArgException if command is not used as event <taskName> /from <start> /to <end>
+     * @throws MissingArgException if command is not used as event <taskName> /from <yyyy-MM-dd hh:mm AM/PM>
+     *     /to <yyyy-MM-dd hh:mm AM/PM>
      */
     public static void processEvent(String arguments) throws MissingArgException {
         String[] splitArgs = arguments.split("/from", 2);
         // We split using /from first to get task name
         if (splitArgs.length < 2) {
-            throw new MissingArgException("event <taskName> /from <start> /to <end>");
+            throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
+                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
         }
         String nameTask = splitArgs[0].trim();
         String getFullTiming = splitArgs[1].trim();
         // We split again using /to to get the actual start and end times
         String[] getActualTiming = getFullTiming.split("/to", 2);
         if (getActualTiming.length < 2) {
-            throw new MissingArgException("event <taskName> /from <start> /to <end>");
+            throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
+                    + "/to <yyyy-mm-dd hh:mm AM/PM>");
         }
         String startTime = getActualTiming[0].trim();
         String endTime = getActualTiming[1].trim();
         if (nameTask.isEmpty() || startTime.isEmpty() || endTime.isEmpty()) {
-            throw new MissingArgException("event <taskName> /from <start> /to <end>");
+            throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
+                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
         }
-        Task eventTask = new Event(nameTask, false, startTime, endTime);
-        listOfTask.add(eventTask);
-        String res = String.format("Got it! I have added this task\n"
-                        + "\t%s\n"
-                        + "Now you have %d tasks!",
-                eventTask.toString(),
-                listOfTask.size());
-        printOutput(res);
 
+        try {
+            LocalDateTime parsedStartTime = LocalDateTime.parse(startTime, dateFormatter);
+            LocalDateTime parsedEndTime = LocalDateTime.parse(endTime, dateFormatter);
+            if (!parsedEndTime.isAfter(parsedStartTime)) {
+                System.out.println("End time must be after start time.");
+                throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
+                        + "/to <yyyy-MM-dd hh:mm AM/PM>");
+            }
+            Task eventTask = new Event(nameTask, false, parsedStartTime, parsedEndTime);
+            listOfTask.add(eventTask);
+            String res = String.format("Got it! I have added this task\n"
+                            + "\t%s\n"
+                            + "Now you have %d tasks!",
+                    eventTask.toString(),
+                    listOfTask.size());
+            printOutput(res);
+
+        } catch (DateTimeParseException e) {
+            throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
+                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
+        }
     }
 
     /**
      * Method to process deadline command
      *
      * @param arguments to process for adding deadline
-     * @throws MissingArgException if command is not used as deadline <taskName> /by <end>
+     * @throws MissingArgException if command is not used as deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>
      */
     public static void processDeadline(String arguments) throws MissingArgException {
         String[] getDeadline = arguments.split("/by", 2);
         // We split using /by so that we can extract deadline time
         if (getDeadline.length < 2) {
-            throw new MissingArgException("deadline <taskName> /by <end>");
+            throw new MissingArgException("deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>");
         }
         String nameTask = getDeadline[0].trim();
         String by = getDeadline[1].trim();
         if (nameTask.isEmpty() || by.isEmpty()) {
-            throw new MissingArgException("deadline <taskName> /by <end>");
+            throw new MissingArgException("deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>");
         }
-        Task deadlineTask = new Deadline(nameTask, false, by);
-        listOfTask.add(deadlineTask);
-        String res = String.format("Got it! I have added this task\n"
-                        + "\t%s\n"
-                        + "Now you have %d tasks!",
-                deadlineTask.toString(),
-                listOfTask.size());
-        printOutput(res);
+        try {
+            LocalDateTime parsedDeadline = LocalDateTime.parse(by, dateFormatter);
+            Task deadlineTask = new Deadline(nameTask, false, parsedDeadline);
+            listOfTask.add(deadlineTask);
+            String res = String.format("Got it! I have added this task\n"
+                            + "\t%s\n"
+                            + "Now you have %d tasks!",
+                    deadlineTask.toString(),
+                    listOfTask.size());
+            printOutput(res);
+
+        } catch (DateTimeParseException e) {
+            throw new MissingArgException("deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>");
+        }
+
     }
 
     /**

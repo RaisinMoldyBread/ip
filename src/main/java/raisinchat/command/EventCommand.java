@@ -53,7 +53,7 @@ public class EventCommand extends Command {
         // We split using /from first to get task name
         if (splitArgs.length < 2) {
             throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
+                                            + "/to <yyyy-MM-dd hh:mm AM/PM>");
         }
         String nameTask = splitArgs[0].trim();
         String getFullTiming = splitArgs[1].trim();
@@ -61,13 +61,13 @@ public class EventCommand extends Command {
         String[] getActualTiming = getFullTiming.split("/to", 2);
         if (getActualTiming.length < 2) {
             throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                    + "/to <yyyy-mm-dd hh:mm AM/PM>");
+                                            + "/to <yyyy-mm-dd hh:mm AM/PM>");
         }
         String startTime = getActualTiming[0].trim();
         String endTime = getActualTiming[1].trim();
         if (nameTask.isEmpty() || startTime.isEmpty() || endTime.isEmpty()) {
             throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
+                                            + "/to <yyyy-MM-dd hh:mm AM/PM>");
         }
 
         try {
@@ -76,20 +76,20 @@ public class EventCommand extends Command {
             if (!parsedEndTime.isAfter(parsedStartTime)) {
                 System.out.println("End time must be after start time.");
                 throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                        + "/to <yyyy-MM-dd hh:mm AM/PM>");
+                                                + "/to <yyyy-MM-dd hh:mm AM/PM>");
             }
             Task eventTask = new Event(nameTask, false, parsedStartTime, parsedEndTime);
             tasks.addTask(eventTask);
             String res = String.format("Got it! I have added this task\n"
-                            + "\t%s\n"
-                            + "Now you have %d tasks!",
+                                        + "\t%s\n"
+                                        + "Now you have %d tasks!",
                     eventTask.toString(),
                     tasks.size());
             ui.showMessage(res);
 
         } catch (DateTimeParseException e) {
             throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
+                                            + "/to <yyyy-MM-dd hh:mm AM/PM>");
         }
     }
 }

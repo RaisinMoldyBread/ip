@@ -48,10 +48,10 @@ public class TodoCommand extends Command {
         Task newTodo = new Todo(this.extraArgs, false);
         tasks.addTask(newTodo);
         String res = String.format("Got it! I have added this task\n"
-                        + "\t%s\n"
-                        + "Now you have %d tasks!",
-                newTodo.toString(),
-                tasks.size());
+                                    + "\t%s\n"
+                                    + "Now you have %d tasks!",
+                                    newTodo.toString(),
+                                    tasks.size());
         ui.showMessage(res);
     }
 }

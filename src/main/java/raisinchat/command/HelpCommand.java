@@ -10,7 +10,7 @@ import raisinchat.ui.Ui;
  */
 public class HelpCommand extends Command {
 
-    private static final String HELPSTRING = """
+    private static final String HELP_STRING = """
         This is our command list:
         list
             - List all available tasks
@@ -42,6 +42,6 @@ public class HelpCommand extends Command {
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showMessage(HELPSTRING);
+        ui.showMessage(HELP_STRING);
     }
 }

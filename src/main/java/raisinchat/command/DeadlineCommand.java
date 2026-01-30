@@ -62,8 +62,8 @@ public class DeadlineCommand extends Command {
             Task deadlineTask = new Deadline(nameTask, false, parsedDeadline);
             tasks.addTask(deadlineTask);
             String res = String.format("Got it! I have added this task\n"
-                            + "\t%s\n"
-                            + "Now you have %d tasks!",
+                                        + "\t%s\n"
+                                        + "Now you have %d tasks!",
                     deadlineTask,
                     tasks.size());
             ui.showMessage(res);

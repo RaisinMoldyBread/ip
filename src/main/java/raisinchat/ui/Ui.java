@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private static final String CHATNAME = "RaisinChat";
+    private static final String CHAT_NAME = "RaisinChat";
     private static final String LINE = "___________________________________________";
     private static final String LOGO = "__________        .__       .__       _________ .__            __   \n"
             + "\\______   \\_____  |__| _____|__| ____ \\_   ___ \\|  |__ _____ _/  |_ \n"
@@ -51,7 +51,7 @@ public class Ui {
     public void showWelcome() {
         System.out.println(LOGO);
         String intro = String.format("Hello! I'm %s\n"
-                + "What can I do for you today?", CHATNAME);
+                                        + "What can I do for you today?", CHAT_NAME);
         showMessage(intro);
     }
 

@@ -10,7 +10,7 @@ import raisinchat.ui.Ui;
  */
 public class RaisinChat {
 
-    public static final String DATALOCATION = "./data/RaisinChatTaskDb.txt";
+    public static final String DATA_LOCATION = "./data/RaisinChatTaskDb.txt";
 
     private Ui ui;
     private Storage storage;
@@ -65,7 +65,7 @@ public class RaisinChat {
     }
 
     public static void main(String[] args) {
-        new RaisinChat(DATALOCATION).run();
+        new RaisinChat(DATA_LOCATION).run();
     }
 
 

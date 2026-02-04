@@ -2,7 +2,9 @@ package raisinchat.command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import raisinchat.Parser;
@@ -13,27 +15,38 @@ import raisinchat.ui.Ui;
 
 public class EventCommandTest {
 
+    private Ui ui;
+    private TaskList tasks;
+    private Storage storage;
+
+    /**
+     * Initialises tests' common assets
+     *
+     */
+    @BeforeEach
+    public void setUp() {
+        ui = new Ui();
+        tasks = new TaskList(null);
+        storage = new Storage("./data/RaisinChatTaskTestDb.txt");
+    }
+
     /**
      * Test for standard deadline command if inputs are properly parsed and added to task list
      *
      */
     @Test
-    public void eventCommandTest1() {
-        String simulatedInput = "event watch coldplay /from 2026-01-02 10:00 AM /to 2026-01-02 11:00 PM";
-        Ui ui = new Ui();
-        TaskList tasks = new TaskList(null);
-        Storage storage = new Storage("./data/RaisinChatTaskTestDb.txt");
-        try {
-            Command c = Parser.parse(simulatedInput);
-            c.execute(tasks, ui, storage);
-            assertEquals("E | 0 | watch coldplay | Jan 2 2026 10:00 am -> Jan 2 2026 11:00 pm",
-                    tasks.getTasks(0).toString());
-        } catch (RaisinChatException e) {
-            assertEquals("Hmm, you are doing it wrong! Use command like this: event <taskName> "
-                            + "/from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>",
-                    e.getMessage());
-        }
+    public void event_validInput_taskAddedCorrectly() throws RaisinChatException {
+        Command c = Parser.parse(
+                "event watch coldplay /from 2026-01-02 10:00 AM /to 2026-01-02 11:00 PM"
+        );
 
+        c.execute(tasks, ui, storage);
+
+        assertEquals(1, tasks.size());
+        assertEquals(
+                "E | 0 | watch coldplay | Jan 2 2026 10:00 am -> Jan 2 2026 11:00 pm",
+                tasks.getTasks(0).toString()
+        );
     }
 
     /**
@@ -41,22 +54,20 @@ public class EventCommandTest {
      *
      */
     @Test
-    public void eventCommandTest2() {
-        String simulatedInput = "event /from 2026-01-02 10:00 AM /to 2026-01-02 11:00 PM";
-        Ui ui = new Ui();
-        TaskList tasks = new TaskList(null);
-        Storage storage = new Storage("./data/RaisinChatTaskTestDb.txt");
-        try {
-            Command c = Parser.parse(simulatedInput);
-            c.execute(tasks, ui, storage);
-            assertEquals("E | 0 | watch coldplay | Jan 2 2026 10:00 am -> Jan 2 2026 11:00 pm",
-                    tasks.getTasks(0).toString());
-        } catch (RaisinChatException e) {
-            assertEquals("Hmm, you are doing it wrong! Use command like this: event <taskName> "
-                            + "/from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>",
-                    e.getMessage());
-        }
+    public void event_missingTaskName_throwsException() throws RaisinChatException {
+        Command c = Parser.parse(
+                "event /from 2026-01-02 10:00 AM /to 2026-01-02 11:00 PM"
+        );
 
+        RaisinChatException e = assertThrows(
+                RaisinChatException.class, () -> c.execute(tasks, ui, storage)
+        );
+
+        assertEquals(
+                "Hmm, you are doing it wrong! Use command like this: event <taskName> "
+                        + "/from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>",
+                e.getMessage()
+        );
     }
 
     /**
@@ -64,22 +75,20 @@ public class EventCommandTest {
      *
      */
     @Test
-    public void eventCommandTest3() {
-        String simulatedInput = "event watch coldplay /from /to 2026-01-02 11:00 PM";
-        Ui ui = new Ui();
-        TaskList tasks = new TaskList(null);
-        Storage storage = new Storage("./data/RaisinChatTaskTestDb.txt");
-        try {
-            Command c = Parser.parse(simulatedInput);
-            c.execute(tasks, ui, storage);
-            assertEquals("E | 0 | watch coldplay | Jan 2 2026 10:00 am -> Jan 2 2026 11:00 pm",
-                    tasks.getTasks(0).toString());
-        } catch (RaisinChatException e) {
-            assertEquals("Hmm, you are doing it wrong! Use command like this: event <taskName> "
-                            + "/from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>",
-                    e.getMessage());
-        }
+    public void event_missingStartTime_throwsException() throws RaisinChatException {
+        Command c = Parser.parse(
+                "event watch coldplay /from /to 2026-01-02 11:00 PM"
+        );
 
+        RaisinChatException e = assertThrows(
+                RaisinChatException.class, () -> c.execute(tasks, ui, storage)
+        );
+
+        assertEquals(
+                "Hmm, you are doing it wrong! Use command like this: event <taskName> "
+                        + "/from <yyyy-MM-dd hh:mm AM/PM> /to <yyyy-MM-dd hh:mm AM/PM>",
+                e.getMessage()
+        );
     }
 
     /**
@@ -87,13 +96,12 @@ public class EventCommandTest {
      *
      */
     @Test
-    public void eventCommandTest4() {
-        try {
-            Command c = Parser.parse("event watch coldplay /from /to 2026-01-02 11:00 PM");
-            assertFalse(c.isExit());
-        } catch (RaisinChatException e) {
-            assertEquals("Empty command received! Type 'help' to see more commands!", e.getMessage());
-        }
+    public void eventCommand_isNotExitCommand() throws RaisinChatException {
+        Command c = Parser.parse(
+                "event watch coldplay /from 2026-01-02 10:00 AM /to 2026-01-02 11:00 PM"
+        );
+
+        assertFalse(c.isExit());
     }
 
 }

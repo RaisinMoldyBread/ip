@@ -2,9 +2,11 @@ package raisinchat.command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import raisinchat.Parser;
@@ -17,27 +19,38 @@ import raisinchat.ui.Ui;
 
 public class MarkCommandTest {
 
+    private Ui ui;
+    private TaskList tasks;
+    private Storage storage;
+
+    /**
+     * Initialises tests' common assets
+     *
+     */
+    @BeforeEach
+    public void setUp() {
+        ui = new Ui();
+        storage = new Storage("./data/RaisinChatTaskTestDb.txt");
+
+        ArrayList<Task> taskList = new ArrayList<>();
+        taskList.add(new Todo("homework", false));
+        tasks = new TaskList(taskList);
+    }
+
     /**
      * Test for mark command if inputs are properly parsed and added to task list
      *
      */
     @Test
-    public void markCommandTest1() {
-        String simulatedInput = "mark 1";
-        Ui ui = new Ui();
-        ArrayList<Task> taskLists = new ArrayList<>();
-        taskLists.add(new Todo("homework", false));
-        TaskList tasks = new TaskList(taskLists);
-        Storage storage = new Storage("./data/RaisinChatTaskTestDb.txt");
-        try {
-            Command c = Parser.parse(simulatedInput);
-            c.execute(tasks, ui, storage);
-            assertEquals("T | 1 | homework",
-                    tasks.getTasks(0).toString());
-        } catch (RaisinChatException e) {
-            assertEquals("mark <indexOfTask>", e.getMessage());
-        }
+    public void mark_validIndex_taskMarkedCorrectly() throws RaisinChatException {
+        Command c = Parser.parse("mark 1");
 
+        c.execute(tasks, ui, storage);
+
+        assertEquals(
+                "T | 1 | homework",
+                tasks.getTasks(0).toString()
+        );
     }
 
     /**
@@ -45,22 +58,17 @@ public class MarkCommandTest {
      *
      */
     @Test
-    public void markCommandTest2() {
-        String simulatedInput = "mark 100000";
-        Ui ui = new Ui();
-        ArrayList<Task> taskLists = new ArrayList<>();
-        taskLists.add(new Todo("homework", false));
-        TaskList tasks = new TaskList(taskLists);
-        Storage storage = new Storage("./data/RaisinChatTaskTestDb.txt");
-        try {
-            Command c = Parser.parse(simulatedInput);
-            c.execute(tasks, ui, storage);
-            assertEquals("T | 1 | homework",
-                    tasks.getTasks(0).toString());
-        } catch (RaisinChatException e) {
-            assertEquals("Such task index does not exist! Please check the list again!", e.getMessage());
-        }
+    public void mark_invalidIndex_throwsException() throws RaisinChatException {
+        Command c = Parser.parse("mark 100000");
 
+        RaisinChatException e = assertThrows(
+                RaisinChatException.class, () -> c.execute(tasks, ui, storage)
+        );
+
+        assertEquals(
+                "Such task index does not exist! Please check the list again!",
+                e.getMessage()
+        );
     }
 
     /**
@@ -68,22 +76,17 @@ public class MarkCommandTest {
      *
      */
     @Test
-    public void markCommandTest3() {
-        String simulatedInput = "mark ten";
-        Ui ui = new Ui();
-        ArrayList<Task> taskLists = new ArrayList<>();
-        taskLists.add(new Todo("homework", false));
-        TaskList tasks = new TaskList(taskLists);
-        Storage storage = new Storage("./data/RaisinChatTaskTestDb.txt");
-        try {
-            Command c = Parser.parse(simulatedInput);
-            c.execute(tasks, ui, storage);
-            assertEquals("T | 1 | homework",
-                    tasks.getTasks(0).toString());
-        } catch (RaisinChatException e) {
-            assertEquals("Task index must be a number!", e.getMessage());
-        }
+    public void mark_nonNumericIndex_throwsException() throws RaisinChatException {
+        Command c = Parser.parse("mark ten");
 
+        RaisinChatException e = assertThrows(
+                RaisinChatException.class, () -> c.execute(tasks, ui, storage)
+        );
+
+        assertEquals(
+                "Task index must be a number!",
+                e.getMessage()
+        );
     }
 
     /**
@@ -91,12 +94,9 @@ public class MarkCommandTest {
      *
      */
     @Test
-    public void markCommandTest4() {
-        try {
-            Command c = Parser.parse("mark 1");
-            assertFalse(c.isExit());
-        } catch (RaisinChatException e) {
-            assertEquals("Empty command received! Type 'help' to see more commands!", e.getMessage());
-        }
+    public void markCommand_isNotExitCommand() throws RaisinChatException {
+        Command c = Parser.parse("mark 1");
+
+        assertFalse(c.isExit());
     }
 }

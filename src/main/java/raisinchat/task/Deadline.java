@@ -22,7 +22,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String fullString() {
+    public String getFullString() {
         return String.format("D | %s | %s", super.toString(),
                 this.deadlineBy);
     }

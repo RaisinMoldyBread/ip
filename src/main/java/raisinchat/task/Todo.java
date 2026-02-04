@@ -9,7 +9,7 @@ public class Todo extends Task {
         super(name, haveDone);
     }
 
-    public String fullString() {
+    public String getFullString() {
         return String.format("T | %s", super.toString());
     }
 

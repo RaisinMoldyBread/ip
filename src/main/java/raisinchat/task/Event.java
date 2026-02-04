@@ -30,7 +30,7 @@ public class Event extends Task {
      *
      * @return full string and format of task and the datetimes
      */
-    public String fullString() {
+    public String getFullString() {
         return String.format("E | %s | %s -> %s",
                                 super.toString(),
                                 this.startBy,

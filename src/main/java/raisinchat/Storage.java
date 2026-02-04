@@ -100,7 +100,7 @@ public class Storage {
     public boolean save(TaskList task) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             for (int i = 0; i < task.size(); i++) {
-                bw.write(task.getTasks(i).fullString());
+                bw.write(task.getTasks(i).getFullString());
                 if (i < task.size() - 1) {
                     bw.newLine();
                 }

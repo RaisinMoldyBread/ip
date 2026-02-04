@@ -59,7 +59,7 @@ public class Task {
      *
      * @return normal string
      */
-    public String fullString() {
+    public String getFullString() {
         return this.isDone ? String.format("1 | %s", this.taskName)
                             : String.format("0 | %s", this.taskName);
     }

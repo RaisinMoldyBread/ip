@@ -19,6 +19,6 @@ public class ByeCommand extends Command {
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showMessage("Bye :( Please come back again soon :\")");
+        ui.showGoodbye();
     }
 }

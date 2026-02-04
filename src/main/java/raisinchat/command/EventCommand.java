@@ -18,7 +18,7 @@ import raisinchat.ui.Ui;
  */
 public class EventCommand extends Command {
 
-    private static final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
             Locale.ENGLISH);
     private String extraArgs;
 
@@ -67,8 +67,8 @@ public class EventCommand extends Command {
         }
 
         try {
-            LocalDateTime parsedStartTime = LocalDateTime.parse(startTime, DATEFORMATTER);
-            LocalDateTime parsedEndTime = LocalDateTime.parse(endTime, DATEFORMATTER);
+            LocalDateTime parsedStartTime = LocalDateTime.parse(startTime, DATE_FORMATTER);
+            LocalDateTime parsedEndTime = LocalDateTime.parse(endTime, DATE_FORMATTER);
             if (!parsedEndTime.isAfter(parsedStartTime)) {
                 System.out.println("End time must be after start time.");
                 throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "

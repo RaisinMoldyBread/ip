@@ -17,7 +17,7 @@ import raisinchat.ui.Ui;
  */
 public class DeadlineCommand extends Command {
 
-    private static final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
             Locale.ENGLISH);
     private String extraArgs;
 
@@ -54,7 +54,7 @@ public class DeadlineCommand extends Command {
             throw new MissingArgException("deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>");
         }
         try {
-            LocalDateTime parsedDeadline = LocalDateTime.parse(by, DATEFORMATTER);
+            LocalDateTime parsedDeadline = LocalDateTime.parse(by, DATE_FORMATTER);
             Task deadlineTask = new Deadline(nameTask, false, parsedDeadline);
             tasks.addTask(deadlineTask);
             String res = String.format("Got it! I have added this task\n"

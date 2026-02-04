@@ -24,7 +24,7 @@ public class DeadlineCommand extends Command {
     /**
      * Creation of the Deadline command class object
      *
-     * @param command The actual enum command that was used by the user
+     * @param command   The actual enum command that was used by the user
      * @param extraArgs The additional arguments needed to construct the actual Deadline task
      *                  which includes the task name and the deadline
      */
@@ -58,8 +58,8 @@ public class DeadlineCommand extends Command {
             Task deadlineTask = new Deadline(nameTask, false, parsedDeadline);
             tasks.addTask(deadlineTask);
             String res = String.format("Got it! I have added this task\n"
-                                        + "\t%s\n"
-                                        + "Now you have %d tasks!",
+                            + "\t%s\n"
+                            + "Now you have %d tasks!",
                     deadlineTask,
                     tasks.size());
             ui.showMessage(res);

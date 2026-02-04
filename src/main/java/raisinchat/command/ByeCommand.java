@@ -13,11 +13,7 @@ public class ByeCommand extends Command {
         super(command);
     }
 
-    /**
-     * Returns if the program should exit after given this command
-     *
-     * @return true always
-     */
+    @Override
     public boolean isExit() {
         return true;
     }

@@ -27,10 +27,6 @@ public class MarkCommand extends Command {
         this.extraArgs = extraArgs;
     }
 
-    public boolean isExit() {
-        return false;
-    }
-
     /**
      * Marks task as done as specified by index given in the user input
      *

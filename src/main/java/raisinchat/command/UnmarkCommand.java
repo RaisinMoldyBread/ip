@@ -27,10 +27,6 @@ public class UnmarkCommand extends Command {
         this.extraArgs = extraArgs;
     }
 
-    public boolean isExit() {
-        return false;
-    }
-
     /**
      * Unmarks task as done as specified by index given in the user input
      *

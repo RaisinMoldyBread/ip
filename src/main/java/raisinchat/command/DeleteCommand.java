@@ -27,10 +27,6 @@ public class DeleteCommand extends Command {
         this.extraArgs = extraArgs;
     }
 
-    public boolean isExit() {
-        return false;
-    }
-
     /**
      * Deletes specified task based on index given
      *

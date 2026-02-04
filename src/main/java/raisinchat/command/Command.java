@@ -36,5 +36,12 @@ public abstract class Command {
 
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws RaisinChatException;
 
-    public abstract boolean isExit();
+    /**
+     * Returns if the program should exit after given this command
+     *
+     * @return true if and only if command given is "bye" OR "exit"
+     */
+    public boolean isExit() {
+        return false;
+    }
 }

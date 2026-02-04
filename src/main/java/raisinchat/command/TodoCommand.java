@@ -27,10 +27,6 @@ public class TodoCommand extends Command {
         this.extraArgs = extraArgs;
     }
 
-    public boolean isExit() {
-        return false;
-    }
-
     /**
      * Method that triggers the execution of the command inputted for event
      * Checks for relevant arguments

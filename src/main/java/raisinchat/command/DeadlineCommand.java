@@ -33,10 +33,6 @@ public class DeadlineCommand extends Command {
         this.extraArgs = extraArgs;
     }
 
-    public boolean isExit() {
-        return false;
-    }
-
     /**
      * Method that triggers the execution of the command inputted for deadline
      * Checks for relevant arguments

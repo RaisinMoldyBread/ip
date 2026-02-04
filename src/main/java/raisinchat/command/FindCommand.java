@@ -27,9 +27,6 @@ public class FindCommand extends Command {
         this.extraArgs = extraArgs;
     }
 
-    public boolean isExit() {
-        return false;
-    }
 
     /**
      * Finds tasks based on given keyword

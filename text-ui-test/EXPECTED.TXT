@@ -146,6 +146,6 @@ ___________________________________________
 Hmm, you are doing it wrong! Use command like this: find <keyword>
 ___________________________________________
 ___________________________________________
-Bye :( Please come back again soon :")
+Bye :") Please come back again :")
 ___________________________________________
 Saved tasks successfully!

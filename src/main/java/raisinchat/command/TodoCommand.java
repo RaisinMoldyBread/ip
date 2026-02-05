@@ -8,8 +8,8 @@ import raisinchat.task.Todo;
 import raisinchat.ui.Ui;
 
 /**
+ * Create the Todo task
  * Abstraction of the Todo command for the application, triggered by "todo" command
- * Executing this command will create the Event task
  */
 public class TodoCommand extends Command {
 

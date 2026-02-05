@@ -10,8 +10,6 @@ import raisinchat.ui.Ui;
  */
 public class RaisinChat {
 
-    public static final String DATA_LOCATION = "./data/RaisinChatTaskDb.txt";
-
     private Ui ui;
     private Storage storage;
     private TaskList tasks;
@@ -64,8 +62,11 @@ public class RaisinChat {
 
     }
 
-    public static void main(String[] args) {
-        new RaisinChat(DATA_LOCATION).run();
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 
 

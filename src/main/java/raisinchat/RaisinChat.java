@@ -1,5 +1,8 @@
 package raisinchat;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
+import javafx.util.Duration;
 import raisinchat.command.Command;
 import raisinchat.exceptions.RaisinChatException;
 import raisinchat.task.TaskList;
@@ -28,36 +31,8 @@ public class RaisinChat {
 
         } catch (RaisinChatException e) {
             this.ui.showLoadingError();
-            this.ui.showMessage(e.getMessage());
+            System.out.println(e.getMessage());
             this.tasks = new TaskList(null);
-        }
-
-    }
-
-    /**
-     * Runs the program and loops forever till shouldExit returns false, triggered by running
-     * [Command Object].isExit() -> This checks if the command is an Exit or Bye command
-     * Saves the current list of tasks into a text file at ./data/RaisinChatTaskDb.txt
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean shouldExit = false;
-        while (!shouldExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                shouldExit = c.isExit();
-            } catch (RaisinChatException e) {
-                ui.showMessage(e.getMessage());
-            }
-        }
-
-        boolean isSaved = this.storage.save(this.tasks);
-        if (!isSaved) {
-            System.out.println("Save failed");
-        } else {
-            System.out.println("Saved tasks successfully!");
         }
 
     }
@@ -66,7 +41,41 @@ public class RaisinChat {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
-        return "Duke heard: " + input;
+        try {
+            Command c = Parser.parse(input);
+            String result = c.execute(tasks, ui, storage);
+
+            // Check if this command signals termination
+            if (c.isExit()) {
+                // 1. Save data immediately
+                this.storage.save(this.tasks);
+
+                // 2. Delay the close so the user sees the "Bye" message
+                PauseTransition delay = new PauseTransition(Duration.seconds(1));
+                delay.setOnFinished(event -> Platform.exit());
+                delay.play();
+            }
+
+            return result;
+        } catch (RaisinChatException e) {
+            return e.getMessage();
+        }
+    }
+
+    /**
+     * Returns the welcome message to be displayed in the GUI.
+     */
+    public String getWelcome() {
+        return ui.showWelcome();
+    }
+
+    /**
+     * Saves the current task list to the storage file.
+     */
+    public void saveData() {
+        if (this.storage != null && this.tasks != null) {
+            this.storage.save(this.tasks);
+        }
     }
 
 

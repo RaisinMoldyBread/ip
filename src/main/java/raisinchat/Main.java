@@ -31,4 +31,14 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
+    /**
+     * This method is called when the application should stop, and provides a
+     * convenient place to prepare for application exit and destroy resources.
+     */
+    @Override
+    public void stop() {
+        // This will save the data regardless of how the user exits
+        raisinChat.saveData();
+    }
 }

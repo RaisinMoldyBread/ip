@@ -42,7 +42,7 @@ public class DeadlineCommand extends Command {
      * @param storage Storage class object to work on
      * @throws MissingArgException if command is not used as deadline [taskName] /by [yyyy-MM-dd hh:mm AM/PM]
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws MissingArgException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MissingArgException {
         String[] getDeadline = this.extraArgs.split("/by", 2);
         // We split using /by so that we can extract deadline time
         if (getDeadline.length < 2) {
@@ -57,12 +57,11 @@ public class DeadlineCommand extends Command {
             LocalDateTime parsedDeadline = LocalDateTime.parse(by, DATE_FORMATTER);
             Task deadlineTask = new Deadline(nameTask, false, parsedDeadline);
             tasks.addTask(deadlineTask);
-            String res = String.format("Got it! I have added this task\n"
+            return String.format("Got it! I have added this task\n"
                             + "\t%s\n"
                             + "Now you have %d tasks!",
                     deadlineTask,
                     tasks.size());
-            ui.showMessage(res);
 
         } catch (DateTimeParseException e) {
             throw new MissingArgException("deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>");

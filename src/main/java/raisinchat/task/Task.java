@@ -30,9 +30,9 @@ public class Task {
         } else {
             this.isDone = true;
             return String.format("Great job completing the task!\n"
-                                    + "I've gone ahead and mark it as done!\n"
-                                    + "\t%s",
-                                    this.toString());
+                            + "I've gone ahead and mark it as done!\n"
+                            + "\t%s",
+                    this.toString());
         }
     }
 
@@ -48,9 +48,9 @@ public class Task {
         } else {
             this.isDone = false;
             return String.format("Hmm... falling behind are we?\n"
-                                    + "I've unmarked the task as done!\n"
-                                    + "\t%s",
-                                    this.toString());
+                            + "I've unmarked the task as done!\n"
+                            + "\t%s",
+                    this.toString());
         }
     }
 
@@ -61,12 +61,12 @@ public class Task {
      */
     public String getFullString() {
         return this.isDone ? String.format("1 | %s", this.taskName)
-                            : String.format("0 | %s", this.taskName);
+                : String.format("0 | %s", this.taskName);
     }
 
     @Override
     public String toString() {
         return this.isDone ? String.format("1 | %s", this.taskName)
-                            : String.format("0 | %s", this.taskName);
+                : String.format("0 | %s", this.taskName);
     }
 }

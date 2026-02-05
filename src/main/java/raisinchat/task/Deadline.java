@@ -12,9 +12,9 @@ public class Deadline extends Task {
     /**
      * Creates the Deadline Task object
      *
-     * @param name of task
+     * @param name     of task
      * @param haveDone false as default
-     * @param doBy deadline of the task
+     * @param doBy     deadline of the task
      */
     public Deadline(String name, boolean haveDone, LocalDateTime doBy) {
         super(name, haveDone);

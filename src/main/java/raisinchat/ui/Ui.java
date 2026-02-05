@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class Ui {
 
     private static final String CHAT_NAME = "RaisinChat";
-    private static final String LINE = "___________________________________________";
     private static final String LOGO = "__________        .__       .__       _________ .__            __   \n"
             + "\\______   \\_____  |__| _____|__| ____ \\_   ___ \\|  |__ _____ _/  |_ \n"
             + " |       _/\\__  \\ |  |/  ___/  |/    \\/    \\  \\/|  |  \\\\__  \\\\   __\\\n"
@@ -26,21 +25,6 @@ public class Ui {
         return scanner.nextLine();
     }
 
-    /**
-     * Prints the standard message format for a given message
-     *
-     * @param message to print in the application's standard message format
-     */
-    public void showMessage(String message) {
-        System.out.println(LINE);
-        System.out.println(message);
-        System.out.println(LINE);
-    }
-
-    public void showLine() {
-        System.out.println(LINE);
-    }
-
     public void showLoadingError() {
         System.out.println("Oh no... we are unable to read your past data :\")");
     }
@@ -48,15 +32,14 @@ public class Ui {
     /**
      * Prints the welcome message and logo of the application
      */
-    public void showWelcome() {
+    public String showWelcome() {
         System.out.println(LOGO);
-        String intro = String.format("Hello! I'm %s\n"
-                                        + "What can I do for you today?", CHAT_NAME);
-        showMessage(intro);
+        return String.format("Hello! I'm %s\n"
+                + "What can I do for you today?", CHAT_NAME);
     }
 
-    public void showGoodbye() {
-        showMessage("Bye :\") Please come back again :\")");
+    public String showGoodbye() {
+        return "Bye :\") Please come back again :\")";
     }
 
 }

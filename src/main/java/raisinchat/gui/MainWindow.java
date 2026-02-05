@@ -32,14 +32,21 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Duke instance */
+    /**
+     * Injects the Duke instance
+     */
     public void setRaisinChat(RaisinChat r) {
         raisinChat = r;
+
+        // Create a dialog box for the welcome message immediately
+        dialogContainer.getChildren().add(
+                DialogBox.getRaisinDialog(r.getWelcome(), raisinImage)
+        );
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one echoing user input and the other containing RaisinChat's reply and then appends
+     * them to the dialog container. Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {
@@ -47,7 +54,7 @@ public class MainWindow extends AnchorPane {
         String response = raisinChat.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, raisinImage)
+                DialogBox.getRaisinDialog(response, raisinImage)
         );
         userInput.clear();
     }

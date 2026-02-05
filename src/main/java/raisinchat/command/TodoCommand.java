@@ -18,7 +18,7 @@ public class TodoCommand extends Command {
     /**
      * Creation of the Todo command class object
      *
-     * @param command The actual enum command that was used by the user
+     * @param command   The actual enum command that was used by the user
      * @param extraArgs The additional arguments needed to create the actual Todo task
      *                  which includes the task name
      */
@@ -36,18 +36,17 @@ public class TodoCommand extends Command {
      * @param storage Storage class object to work on
      * @throws MissingArgException if command is not used as todo [taskName]
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws MissingArgException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MissingArgException {
         if (this.extraArgs.isEmpty()) {
             throw new MissingArgException("todo <taskName>");
         }
 
         Task newTodo = new Todo(this.extraArgs, false);
         tasks.addTask(newTodo);
-        String res = String.format("Got it! I have added this task\n"
-                                    + "\t%s\n"
-                                    + "Now you have %d tasks!",
-                                    newTodo.toString(),
-                                    tasks.size());
-        ui.showMessage(res);
+        return String.format("Got it! I have added this task\n"
+                        + "\t%s\n"
+                        + "Now you have %d tasks!",
+                newTodo.toString(),
+                tasks.size());
     }
 }

@@ -25,7 +25,7 @@ public class EventCommand extends Command {
     /**
      * Creation of the Event command class object
      *
-     * @param command The actual enum command that was used by the user
+     * @param command   The actual enum command that was used by the user
      * @param extraArgs The additional arguments needed to create the actual Event task
      *                  which includes the task name, start datetime and end datetime
      */
@@ -42,14 +42,14 @@ public class EventCommand extends Command {
      * @param ui      Ui class to execute user interaction methods
      * @param storage Storage class object to work on
      * @throws MissingArgException if command is not used as event [taskName] /from [yyyy-MM-dd hh:mm AM/PM]
-     *                              /to [yyyy-MM-dd hh:mm AM/PM]
+     *                             /to [yyyy-MM-dd hh:mm AM/PM]
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws MissingArgException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MissingArgException {
         String[] splitArgs = this.extraArgs.split("/from", 2);
         // We split using /from first to get task name
         if (splitArgs.length < 2) {
             throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                                            + "/to <yyyy-MM-dd hh:mm AM/PM>");
+                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
         }
         String nameTask = splitArgs[0].trim();
         String getFullTiming = splitArgs[1].trim();
@@ -57,13 +57,13 @@ public class EventCommand extends Command {
         String[] getActualTiming = getFullTiming.split("/to", 2);
         if (getActualTiming.length < 2) {
             throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                                            + "/to <yyyy-mm-dd hh:mm AM/PM>");
+                    + "/to <yyyy-mm-dd hh:mm AM/PM>");
         }
         String startTime = getActualTiming[0].trim();
         String endTime = getActualTiming[1].trim();
         if (nameTask.isEmpty() || startTime.isEmpty() || endTime.isEmpty()) {
             throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                                            + "/to <yyyy-MM-dd hh:mm AM/PM>");
+                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
         }
 
         try {
@@ -72,20 +72,19 @@ public class EventCommand extends Command {
             if (!parsedEndTime.isAfter(parsedStartTime)) {
                 System.out.println("End time must be after start time.");
                 throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                                                + "/to <yyyy-MM-dd hh:mm AM/PM>");
+                        + "/to <yyyy-MM-dd hh:mm AM/PM>");
             }
             Task eventTask = new Event(nameTask, false, parsedStartTime, parsedEndTime);
             tasks.addTask(eventTask);
-            String res = String.format("Got it! I have added this task\n"
-                                        + "\t%s\n"
-                                        + "Now you have %d tasks!",
+            return String.format("Got it! I have added this task\n"
+                            + "\t%s\n"
+                            + "Now you have %d tasks!",
                     eventTask.toString(),
                     tasks.size());
-            ui.showMessage(res);
 
         } catch (DateTimeParseException e) {
             throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                                            + "/to <yyyy-MM-dd hh:mm AM/PM>");
+                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
         }
     }
 }

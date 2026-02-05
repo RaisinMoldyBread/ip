@@ -18,7 +18,7 @@ public class UnmarkCommand extends Command {
     /**
      * Creation of the Unmark command class object
      *
-     * @param command The actual enum command that was used by the user
+     * @param command   The actual enum command that was used by the user
      * @param extraArgs The additional arguments needed to unmark the task based on index number of the current list of
      *                  tasks
      */
@@ -36,7 +36,7 @@ public class UnmarkCommand extends Command {
      * @throws MissingArgException if command is not used as delete [indexOfTask]
      * @throws RaisinChatException if index of task does NOT exist or index is NOT a number
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws RaisinChatException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws RaisinChatException {
         if (this.extraArgs.isBlank()) { // Checks if input contains an index
             throw new MissingArgException("unmark <indexOfTask>");
         }
@@ -54,7 +54,7 @@ public class UnmarkCommand extends Command {
         } else {
             // Index is valid, proceed to unmark task
             Task task = tasks.getTasks(index - 1);
-            ui.showMessage(task.markUndone());
+            return task.markUndone();
         }
     }
 }

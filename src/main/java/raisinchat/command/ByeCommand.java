@@ -18,7 +18,7 @@ public class ByeCommand extends Command {
         return true;
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showGoodbye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.showGoodbye();
     }
 }

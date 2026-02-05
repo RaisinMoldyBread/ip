@@ -11,6 +11,23 @@ import raisinchat.ui.Ui;
  */
 public abstract class Command {
 
+    private UserCommand inputCommand;
+
+    public Command(UserCommand command) {
+        this.inputCommand = command;
+    }
+
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws RaisinChatException;
+
+    /**
+     * Returns if the program should exit after given this command
+     *
+     * @return true if and only if command given is "bye" OR "exit"
+     */
+    public boolean isExit() {
+        return false;
+    }
+
     /**
      * Enum of commands that are available in this application
      */
@@ -26,22 +43,5 @@ public abstract class Command {
         MARK,
         UNMARK,
         FIND
-    }
-
-    private UserCommand inputCommand;
-
-    public Command(UserCommand command) {
-        this.inputCommand = command;
-    }
-
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws RaisinChatException;
-
-    /**
-     * Returns if the program should exit after given this command
-     *
-     * @return true if and only if command given is "bye" OR "exit"
-     */
-    public boolean isExit() {
-        return false;
     }
 }

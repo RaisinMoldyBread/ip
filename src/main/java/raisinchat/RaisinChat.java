@@ -23,6 +23,7 @@ public class RaisinChat {
      * @param fileDb Database of past saved tasks to load into the program
      */
     public RaisinChat(String fileDb) {
+        assert fileDb != null : "File path for storage must not be null";
         this.ui = new Ui();
         this.storage = new Storage(fileDb);
 
@@ -32,8 +33,9 @@ public class RaisinChat {
         } catch (RaisinChatException e) {
             this.ui.showLoadingError();
             System.out.println(e.getMessage());
-            this.tasks = new TaskList(null);
+            this.tasks = new TaskList();
         }
+        assert this.tasks != null : "TaskList should never be null after initialization";
 
     }
 
@@ -41,8 +43,12 @@ public class RaisinChat {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
+        assert input != null : "UI passed null input to RaisinChat";
         try {
             Command c = Parser.parse(input);
+            assert c != null : "Parser must never return null Command";
+            assert tasks != null && ui != null && storage != null
+                    : "Execution dependencies must not be null";
             String result = c.execute(tasks, ui, storage);
 
             // Check if this command signals termination
@@ -74,7 +80,8 @@ public class RaisinChat {
      */
     public void saveData() {
         if (this.storage != null && this.tasks != null) {
-            this.storage.save(this.tasks);
+            boolean isSaved = this.storage.save(this.tasks);
+            assert isSaved : "Something went wrong while saving data, check Storage.java";
         }
     }
 

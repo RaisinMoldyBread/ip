@@ -27,6 +27,7 @@ public class Parser {
      * @throws RaisinChatException if given command is empty
      */
     public static Command parse(String command) throws RaisinChatException {
+        assert command != null : "Command to parse is null, please check logic at RaisinChat.java";
         String input = command.trim();
         if (input.isEmpty()) {
             throw new RaisinChatException("Empty command received! Type 'help' to see more commands!");

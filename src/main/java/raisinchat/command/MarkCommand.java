@@ -55,6 +55,7 @@ public class MarkCommand extends Command {
         } else {
             // Index is valid, proceed to mark task
             Task task = tasks.getTasks(index - 1);
+            assert task != null : "Task is still null!";
             return task.markDone();
         }
     }

@@ -14,12 +14,8 @@ public class TaskList {
      * @param existingList of task if they exist, if not create a new one
      */
     public TaskList(ArrayList<Task> existingList) {
-        assert existingList != null : "Storage loaded a null list. Check Storage.java";
-        if (existingList == null) {
-            this.taskList = new ArrayList<>(); // Fallback to empty list
-        } else {
-            this.taskList = existingList;
-        }
+        assert existingList != null : "existingList must not be null";
+        this.taskList = existingList;
     }
 
     /**
@@ -31,6 +27,7 @@ public class TaskList {
     }
 
     public void addTask(Task task) {
+        assert task != null : "Cannot add null Task";
         this.taskList.add(task);
     }
 

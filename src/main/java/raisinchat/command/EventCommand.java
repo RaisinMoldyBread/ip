@@ -65,7 +65,6 @@ public class EventCommand extends Command {
             throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
                     + "/to <yyyy-MM-dd hh:mm AM/PM>");
         }
-
         try {
             LocalDateTime parsedStartTime = LocalDateTime.parse(startTime, DATE_FORMATTER);
             LocalDateTime parsedEndTime = LocalDateTime.parse(endTime, DATE_FORMATTER);
@@ -76,12 +75,12 @@ public class EventCommand extends Command {
             }
             Task eventTask = new Event(nameTask, false, parsedStartTime, parsedEndTime);
             tasks.addTask(eventTask);
-            return String.format("Got it! I have added this task\n"
+            String res = String.format("Got it! I have added this task\n"
                             + "\t%s\n"
                             + "Now you have %d tasks!",
                     eventTask.toString(),
                     tasks.size());
-
+            return res;
         } catch (DateTimeParseException e) {
             throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
                     + "/to <yyyy-MM-dd hh:mm AM/PM>");

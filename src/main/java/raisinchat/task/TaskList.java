@@ -14,11 +14,20 @@ public class TaskList {
      * @param existingList of task if they exist, if not create a new one
      */
     public TaskList(ArrayList<Task> existingList) {
+        assert existingList != null : "Storage loaded a null list. Check Storage.java";
         if (existingList == null) {
-            this.taskList = new ArrayList<>();
+            this.taskList = new ArrayList<>(); // Fallback to empty list
         } else {
             this.taskList = existingList;
         }
+    }
+
+    /**
+     * Creates the TaskList object on empty load
+     *
+     */
+    public TaskList() {
+        this.taskList = new ArrayList<>();
     }
 
     public void addTask(Task task) {
@@ -26,7 +35,9 @@ public class TaskList {
     }
 
     public void deleteTask(Task task) {
+        int initialSize = this.taskList.size();
         this.taskList.remove(task);
+        assert this.size() == initialSize - 1 : "Task list size did not decrease by 1";
     }
 
     public Task getTasks(int taskIndex) {

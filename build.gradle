@@ -53,7 +53,7 @@ checkstyle {
 }
 
 shadowJar {
-    archiveBaseName = "raisinChat"
+    archiveBaseName = "RaisinChat"
     archiveClassifier = null
 }
 

@@ -18,13 +18,23 @@ public class TaskList {
         this.taskList = existingList;
     }
 
+    /**
+     * Creates the TaskList object on empty load
+     *
+     */
+    public TaskList() {
+        this.taskList = new ArrayList<>();
+    }
+
     public void addTask(Task task) {
         assert task != null : "Cannot add null Task";
         this.taskList.add(task);
     }
 
     public void deleteTask(Task task) {
+        int initialSize = this.taskList.size();
         this.taskList.remove(task);
+        assert this.size() == initialSize - 1 : "Task list size did not decrease by 1";
     }
 
     public Task getTasks(int taskIndex) {

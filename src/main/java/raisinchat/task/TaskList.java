@@ -26,11 +26,19 @@ public class TaskList {
         this.taskList = new ArrayList<>();
     }
 
+    /**
+     * Adds a task into the ArrayList for the TaskList class object
+     *
+     */
     public void addTask(Task task) {
         assert task != null : "Cannot add null Task";
         this.taskList.add(task);
     }
 
+    /**
+     * Removes a task from the ArrayList for the TaskList class object
+     *
+     */
     public void deleteTask(Task task) {
         int initialSize = this.taskList.size();
         this.taskList.remove(task);

@@ -14,14 +14,12 @@ public class TaskList {
      * @param existingList of task if they exist, if not create a new one
      */
     public TaskList(ArrayList<Task> existingList) {
-        if (existingList == null) {
-            this.taskList = new ArrayList<>();
-        } else {
-            this.taskList = existingList;
-        }
+        assert existingList != null : "existingList must not be null";
+        this.taskList = existingList;
     }
 
     public void addTask(Task task) {
+        assert task != null : "Cannot add null Task";
         this.taskList.add(task);
     }
 

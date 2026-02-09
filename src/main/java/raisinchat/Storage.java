@@ -31,7 +31,7 @@ public class Storage {
      * Loads the existing tasks into the abstracted database class called TaskList
      * If none exist, return an empty ArrayList
      *
-     * @return an ArrayList of Tasks or null if such file does not exist
+     * @return an ArrayList of Tasks (empty if no tasks exist)
      * @throws RaisinChatException if file is corrupted or does not follow expected format for the database
      */
     public ArrayList<Task> load() throws RaisinChatException {
@@ -45,7 +45,7 @@ public class Storage {
 
             if (!taskFile.exists()) {
                 taskFile.createNewFile();
-                return null; // nothing to read yet
+                return new ArrayList<>(); // nothing to read yet
             }
             ArrayList<Task> listOfTask;
             try (Scanner fileReader = new Scanner(taskFile)) {
@@ -94,14 +94,15 @@ public class Storage {
     /**
      * Saves the current tasks into a text file
      *
-     * @param task List of current tasks before program exits
+     * @param tasks List of current tasks before program exits
      * @return if task list was saved or not, false if and only if it fails to find the file and overwrite it
      */
-    public boolean save(TaskList task) {
+    public boolean save(TaskList tasks) {
+        assert tasks != null : "TaskList passed to Storage.save() must not be null";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-            for (int i = 0; i < task.size(); i++) {
-                bw.write(task.getTasks(i).getFullString());
-                if (i < task.size() - 1) {
+            for (int i = 0; i < tasks.size(); i++) {
+                bw.write(tasks.getTasks(i).getFullString());
+                if (i < tasks.size() - 1) {
                     bw.newLine();
                 }
             }

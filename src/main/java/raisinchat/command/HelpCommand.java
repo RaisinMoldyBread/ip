@@ -14,22 +14,31 @@ public class HelpCommand extends Command {
             This is our command list:
             list
                 - List all available tasks
+            
             help
                 - List all commands available to chatbot
+            
             todo [name of task]
                 - Creates a todo task
+            
             deadline [name of task] /by [yyyy-MM-dd hh:mm AM/PM]
                 - Creates task with deadline specified
+            
             event [name of task] /from [yyyy-MM-dd hh:mm AM/PM] /to [yyyy-MM-dd hh:mm AM/PM]
                 - Creates event task with start and end time
+            
             delete [task index]
                 - Deletes a task in the list
+            
             find [keyword]
                 - Finds tasks that contains provided keyword
+            
             mark [task index]
                 - Marks task at index specified as done
+            
             unmark [task index]
                 - Marks task as not completed
+            
             bye / exit - Exit Chatbot :(
             """;
 

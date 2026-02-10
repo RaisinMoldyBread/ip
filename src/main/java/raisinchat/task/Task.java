@@ -32,7 +32,7 @@ public class Task {
             return String.format("Great job completing the task!\n"
                             + "I've gone ahead and mark it as done!\n"
                             + "\t%s",
-                    this.toString());
+                    this);
         }
     }
 
@@ -50,7 +50,7 @@ public class Task {
             return String.format("Hmm... falling behind are we?\n"
                             + "I've unmarked the task as done!\n"
                             + "\t%s",
-                    this.toString());
+                    this);
         }
     }
 

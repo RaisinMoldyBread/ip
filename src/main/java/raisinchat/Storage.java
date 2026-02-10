@@ -21,7 +21,7 @@ import raisinchat.task.Todo;
  */
 public class Storage {
 
-    private String file;
+    private final String file;
 
     public Storage(String filePath) {
         this.file = filePath;

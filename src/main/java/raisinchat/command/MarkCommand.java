@@ -13,7 +13,7 @@ import raisinchat.ui.Ui;
  */
 public class MarkCommand extends Command {
 
-    private String extraArgs;
+    private final String extraArgs;
 
     /**
      * Creation of the Mark command class object

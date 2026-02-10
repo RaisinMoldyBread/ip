@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Abstraction of a database of Tasks that is currently used by the program
  */
 public class TaskList {
-    private ArrayList<Task> taskList;
+    private final ArrayList<Task> taskList;
 
     /**
      * Creates the TaskList object based on Storage class loading

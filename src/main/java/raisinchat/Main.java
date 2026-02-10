@@ -16,7 +16,7 @@ public class Main extends Application {
 
     public static final String DATA_LOCATION = "./data/RaisinChatTaskDb.txt";
 
-    private RaisinChat raisinChat = new RaisinChat(DATA_LOCATION);
+    private final RaisinChat raisinChat = new RaisinChat(DATA_LOCATION);
 
     @Override
     public void start(Stage stage) {

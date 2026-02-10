@@ -11,6 +11,7 @@ import raisinchat.command.ListCommand;
 import raisinchat.command.MarkCommand;
 import raisinchat.command.TodoCommand;
 import raisinchat.command.UnmarkCommand;
+import raisinchat.command.UpdateCommand;
 import raisinchat.exceptions.RaisinChatException;
 import raisinchat.exceptions.UnkownCommandException;
 
@@ -52,6 +53,9 @@ public class Parser {
 
         case "deadline":
             return new DeadlineCommand(Command.UserCommand.DEADLINE, args);
+
+        case "update":
+            return new UpdateCommand(Command.UserCommand.UPDATE, args);
 
         case "delete":
             return new DeleteCommand(Command.UserCommand.DELETE, args);

@@ -13,7 +13,7 @@ import raisinchat.ui.Ui;
  */
 public class TodoCommand extends Command {
 
-    private String extraArgs;
+    private final String extraArgs;
 
     /**
      * Creation of the Todo command class object
@@ -46,7 +46,7 @@ public class TodoCommand extends Command {
         return String.format("Got it! I have added this task\n"
                         + "\t%s\n"
                         + "Now you have %d tasks!",
-                newTodo.toString(),
+                newTodo,
                 tasks.size());
     }
 }

@@ -13,7 +13,7 @@ import raisinchat.ui.Ui;
  */
 public class UnmarkCommand extends Command {
 
-    private String extraArgs;
+    private final String extraArgs;
 
     /**
      * Creation of the Unmark command class object

@@ -30,6 +30,12 @@ public class HelpCommand extends Command {
             delete [task index]
                 - Deletes a task in the list
 
+            update [task index] /by [yyyy-MM-dd hh:mm AM/PM]
+            update [task index] /from [yyyy-MM-dd hh:mm AM/PM]
+            update [task index] /by [yyyy-MM-dd hh:mm AM/PM]
+            update [task index] /from [yyyy-MM-dd hh:mm AM/PM] /by [yyyy-MM-dd hh:mm AM/PM]
+                - Updates Deadline or Event tasks' date and times
+
             find [keyword]
                 - Finds tasks that contains provided keyword
 

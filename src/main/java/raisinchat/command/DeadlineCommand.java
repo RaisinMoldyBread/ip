@@ -1,25 +1,23 @@
 package raisinchat.command;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Locale;
 
 import raisinchat.Storage;
 import raisinchat.exceptions.MissingArgException;
+import raisinchat.exceptions.RaisinChatException;
 import raisinchat.task.Deadline;
 import raisinchat.task.Task;
 import raisinchat.task.TaskList;
 import raisinchat.ui.Ui;
+import raisinchat.util.DateTimeParser;
 
 /**
  * Abstraction of the Deadline command for the application, triggered by "deadline" command
  */
 public class DeadlineCommand extends Command {
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
-            Locale.ENGLISH);
-    private String extraArgs;
+    private static final String HOW_TO_COMMAND = "deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>";
+    private final String extraArgs;
 
     /**
      * Creation of the Deadline command class object
@@ -46,15 +44,15 @@ public class DeadlineCommand extends Command {
         String[] getDeadline = this.extraArgs.split("/by", 2);
         // We split using /by so that we can extract deadline time
         if (getDeadline.length < 2) {
-            throw new MissingArgException("deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>");
+            throw new MissingArgException(HOW_TO_COMMAND);
         }
         String nameTask = getDeadline[0].trim();
         String by = getDeadline[1].trim();
         if (nameTask.isEmpty() || by.isEmpty()) {
-            throw new MissingArgException("deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>");
+            throw new MissingArgException(HOW_TO_COMMAND);
         }
         try {
-            LocalDateTime parsedDeadline = LocalDateTime.parse(by, DATE_FORMATTER);
+            LocalDateTime parsedDeadline = DateTimeParser.parse(by);
             Task deadlineTask = new Deadline(nameTask, false, parsedDeadline);
             tasks.addTask(deadlineTask);
             return String.format("Got it! I have added this task\n"
@@ -63,8 +61,8 @@ public class DeadlineCommand extends Command {
                     deadlineTask,
                     tasks.size());
 
-        } catch (DateTimeParseException e) {
-            throw new MissingArgException("deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>");
+        } catch (RaisinChatException e) {
+            return e.getMessage();
         }
     }
 }

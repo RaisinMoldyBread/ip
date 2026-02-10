@@ -1,16 +1,15 @@
 package raisinchat.command;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Locale;
 
 import raisinchat.Storage;
 import raisinchat.exceptions.MissingArgException;
+import raisinchat.exceptions.RaisinChatException;
 import raisinchat.task.Event;
 import raisinchat.task.Task;
 import raisinchat.task.TaskList;
 import raisinchat.ui.Ui;
+import raisinchat.util.DateTimeParser;
 
 /**
  * Abstraction of the Event command for the application, triggered by "event" command
@@ -18,9 +17,9 @@ import raisinchat.ui.Ui;
  */
 public class EventCommand extends Command {
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a",
-            Locale.ENGLISH);
-    private String extraArgs;
+    private static final String HOW_TO_COMMAND = "event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
+            + "/to <yyyy-MM-dd hh:mm AM/PM>";
+    private final String extraArgs;
 
     /**
      * Creation of the Event command class object
@@ -48,42 +47,37 @@ public class EventCommand extends Command {
         String[] splitArgs = this.extraArgs.split("/from", 2);
         // We split using /from first to get task name
         if (splitArgs.length < 2) {
-            throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
+            throw new MissingArgException(HOW_TO_COMMAND);
         }
         String nameTask = splitArgs[0].trim();
         String getFullTiming = splitArgs[1].trim();
         // We split again using /to to get the actual start and end times
         String[] getActualTiming = getFullTiming.split("/to", 2);
         if (getActualTiming.length < 2) {
-            throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                    + "/to <yyyy-mm-dd hh:mm AM/PM>");
+            throw new MissingArgException(HOW_TO_COMMAND);
         }
         String startTime = getActualTiming[0].trim();
         String endTime = getActualTiming[1].trim();
         if (nameTask.isEmpty() || startTime.isEmpty() || endTime.isEmpty()) {
-            throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
+            throw new MissingArgException(HOW_TO_COMMAND);
         }
         try {
-            LocalDateTime parsedStartTime = LocalDateTime.parse(startTime, DATE_FORMATTER);
-            LocalDateTime parsedEndTime = LocalDateTime.parse(endTime, DATE_FORMATTER);
+            LocalDateTime parsedStartTime = DateTimeParser.parse(startTime);
+            LocalDateTime parsedEndTime = DateTimeParser.parse(endTime);
             if (!parsedEndTime.isAfter(parsedStartTime)) {
                 System.out.println("End time must be after start time.");
-                throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                        + "/to <yyyy-MM-dd hh:mm AM/PM>");
+                throw new MissingArgException(HOW_TO_COMMAND);
             }
             Task eventTask = new Event(nameTask, false, parsedStartTime, parsedEndTime);
             tasks.addTask(eventTask);
             String res = String.format("Got it! I have added this task\n"
                             + "\t%s\n"
                             + "Now you have %d tasks!",
-                    eventTask.toString(),
+                    eventTask,
                     tasks.size());
             return res;
-        } catch (DateTimeParseException e) {
-            throw new MissingArgException("event <taskName> /from <yyyy-MM-dd hh:mm AM/PM> "
-                    + "/to <yyyy-MM-dd hh:mm AM/PM>");
+        } catch (RaisinChatException e) {
+            return e.getMessage();
         }
     }
 }

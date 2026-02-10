@@ -13,8 +13,8 @@ import raisinchat.ui.Ui;
  */
 public class RaisinChat {
 
-    private Ui ui;
-    private Storage storage;
+    private final Ui ui;
+    private final Storage storage;
     private TaskList tasks;
 
     /**

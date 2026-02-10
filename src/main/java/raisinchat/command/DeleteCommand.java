@@ -13,7 +13,7 @@ import raisinchat.ui.Ui;
  */
 public class DeleteCommand extends Command {
 
-    private String extraArgs;
+    private final String extraArgs;
 
     /**
      * Creation of the Delete command class object

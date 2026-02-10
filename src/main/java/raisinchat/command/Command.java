@@ -11,7 +11,7 @@ import raisinchat.ui.Ui;
  */
 public abstract class Command {
 
-    private UserCommand inputCommand;
+    private final UserCommand inputCommand;
 
     public Command(UserCommand command) {
         this.inputCommand = command;
@@ -42,6 +42,7 @@ public abstract class Command {
         DELETE,
         MARK,
         UNMARK,
-        FIND
+        FIND,
+        UPDATE
     }
 }

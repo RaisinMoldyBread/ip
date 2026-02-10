@@ -24,8 +24,8 @@ public class MainWindow extends AnchorPane {
 
     private RaisinChat raisinChat;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/RcUser.png"));
-    private Image raisinImage = new Image(this.getClass().getResourceAsStream("/images/Raisin.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/RcUser.png"));
+    private final Image raisinImage = new Image(this.getClass().getResourceAsStream("/images/Raisin.png"));
 
     @FXML
     public void initialize() {
@@ -33,7 +33,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Injects the Duke instance
+     * Injects the RaisinChat instance
      */
     public void setRaisinChat(RaisinChat r) {
         raisinChat = r;

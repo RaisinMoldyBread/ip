@@ -14,7 +14,7 @@ import raisinchat.ui.Ui;
  * Executing it will find all tasks that matches the keyword given by the user
  */
 public class FindCommand extends Command {
-    private String extraArgs;
+    private final String extraArgs;
 
     /**
      * Creates the Find Command object
@@ -47,6 +47,9 @@ public class FindCommand extends Command {
             if (getTask.toString().contains(this.extraArgs.trim())) {
                 displayList.add(getTask);
             }
+        }
+        if (displayList.isEmpty()) {
+            return "No such task found";
         }
         StringBuilder sb = new StringBuilder("Here are the matching tasks in your list right now:\n");
         for (int i = 0; i < displayList.size(); i++) {

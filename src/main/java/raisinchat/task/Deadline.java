@@ -21,6 +21,16 @@ public class Deadline extends Task {
         this.deadlineBy = doBy;
     }
 
+    /**
+     * Support method to update Deadline tasks
+     *
+     * @param newBy The new deadline to update this specific Deadline object
+     */
+    public void setBy(LocalDateTime newBy) {
+        assert newBy != null;
+        this.deadlineBy = newBy;
+    }
+
     @Override
     public String getFullString() {
         return String.format("D | %s | %s", super.toString(),

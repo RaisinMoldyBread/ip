@@ -37,6 +37,24 @@ public class Event extends Task {
                 this.endBy);
     }
 
+    public LocalDateTime getFrom() {
+        return startBy;
+    }
+
+    public void setFrom(LocalDateTime from) {
+        assert from != null;
+        this.startBy = from;
+    }
+
+    public LocalDateTime getTo() {
+        return endBy;
+    }
+
+    public void setTo(LocalDateTime to) {
+        assert to != null;
+        this.endBy = to;
+    }
+
     @Override
     public String toString() {
         return String.format("E | %s | %s -> %s",

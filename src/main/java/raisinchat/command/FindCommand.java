@@ -43,7 +43,7 @@ public class FindCommand extends Command {
 
         ArrayList<Task> displayList = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {
-            Task currentTask = tasks.getTasks(i);
+            Task currentTask = tasks.getTask(i);
             if (currentTask.toString().contains(this.extraArgs.trim())) {
                 displayList.add(currentTask);
             }

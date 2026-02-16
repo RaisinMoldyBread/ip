@@ -41,7 +41,7 @@ public class DeleteCommandTest {
         c.execute(tasks, ui, storage);
 
         assertEquals(1, tasks.size());
-        assertEquals("T | 0 | read book", tasks.getTasks(0).toString());
+        assertEquals("T | 0 | read book", tasks.getTask(0).toString());
     }
 
     @Test

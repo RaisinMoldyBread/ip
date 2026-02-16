@@ -80,7 +80,7 @@ public class UpdateCommand extends Command {
             throw new RaisinChatException("Invalid task index");
         }
 
-        Task task = tasks.getTasks(taskIndex);
+        Task task = tasks.getTask(taskIndex);
 
         if (task instanceof Deadline deadline) {
             if (newBy == null) {

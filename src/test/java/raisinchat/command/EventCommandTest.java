@@ -46,7 +46,7 @@ public class EventCommandTest {
         assertEquals(1, tasks.size());
         assertEquals(
                 "E | 0 | watch coldplay | Jan 2 2026 10:00 am -> Jan 2 2026 11:00 pm",
-                tasks.getTasks(0).toString()
+                tasks.getTask(0).toString()
         );
     }
 

@@ -53,7 +53,7 @@ public class UnmarkCommand extends Command {
             throw new RaisinChatException("Such task index does not exist! Please check the list again!");
         } else {
             // Index is valid, proceed to unmark task
-            Task task = tasks.getTasks(index - 1);
+            Task task = tasks.getTask(index - 1);
             return task.markUndone();
         }
     }

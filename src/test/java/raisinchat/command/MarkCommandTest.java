@@ -51,7 +51,7 @@ public class MarkCommandTest {
 
         assertEquals(
                 "T | 1 | homework",
-                tasks.getTasks(0).toString()
+                tasks.getTask(0).toString()
         );
     }
 

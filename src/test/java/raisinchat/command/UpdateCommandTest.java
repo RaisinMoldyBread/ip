@@ -52,7 +52,7 @@ public class UpdateCommandTest {
 
         assertEquals(
             "D | 0 | stats | Jan 4 2026 01:00 pm",
-                tasks.getTasks(0).toString()
+                tasks.getTask(0).toString()
         );
     }
 
@@ -64,7 +64,7 @@ public class UpdateCommandTest {
 
         assertEquals(
             "E | 0 | concert | Jan 2 2026 09:00 am -> Jan 2 2026 11:00 am",
-                tasks.getTasks(1).toString()
+                tasks.getTask(1).toString()
         );
     }
 

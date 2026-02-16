@@ -105,7 +105,7 @@ public class Storage {
         assert tasks != null : "TaskList passed to Storage.save() must not be null";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             for (int i = 0; i < tasks.size(); i++) {
-                bw.write(tasks.getTasks(i).getFullString());
+                bw.write(tasks.getTask(i).getFullString());
                 if (i < tasks.size() - 1) {
                     bw.newLine();
                 }

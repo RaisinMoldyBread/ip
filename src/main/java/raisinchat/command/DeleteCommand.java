@@ -55,7 +55,7 @@ public class DeleteCommand extends Command {
             throw new RaisinChatException("Such task index does not exist! Please check the list again!");
         } else {
             // Index is valid, proceed to delete task
-            Task task = tasks.getTasks(index - 1);
+            Task task = tasks.getTask(index - 1);
             tasks.deleteTask(task);
             String res = String.format("Noted. I have removed this task:\n"
                             + "\t%s\n"

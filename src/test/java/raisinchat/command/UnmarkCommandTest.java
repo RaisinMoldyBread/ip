@@ -41,7 +41,7 @@ public class UnmarkCommandTest {
 
         assertDoesNotThrow(() -> c.execute(tasks, ui, storage));
 
-        assertEquals("T | 0 | homework", tasks.getTasks(0).toString());
+        assertEquals("T | 0 | homework", tasks.getTask(0).toString());
     }
 
     @Test

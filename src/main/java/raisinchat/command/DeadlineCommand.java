@@ -41,13 +41,13 @@ public class DeadlineCommand extends Command {
      * @throws MissingArgException if command is not used as deadline [taskName] /by [yyyy-MM-dd hh:mm AM/PM]
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MissingArgException {
-        String[] getDeadline = this.extraArgs.split("/by", 2);
+        String[] deadlineArgs = this.extraArgs.split("/by", 2);
         // We split using /by so that we can extract deadline time
-        if (getDeadline.length < 2) {
+        if (deadlineArgs.length < 2) {
             throw new MissingArgException(HOW_TO_COMMAND);
         }
-        String nameTask = getDeadline[0].trim();
-        String by = getDeadline[1].trim();
+        String nameTask = deadlineArgs[0].trim();
+        String by = deadlineArgs[1].trim();
         if (nameTask.isEmpty() || by.isEmpty()) {
             throw new MissingArgException(HOW_TO_COMMAND);
         }

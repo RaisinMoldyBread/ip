@@ -52,7 +52,7 @@ public class TaskList {
      * @param taskIndex zero-based index
      * @return task at the given index
      */
-    public Task getTasks(int taskIndex) {
+    public Task getTask(int taskIndex) {
         return this.taskList.get(taskIndex);
     }
 

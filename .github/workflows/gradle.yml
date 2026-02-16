@@ -33,3 +33,6 @@ jobs:
 
       - name: Build and check with Gradle
         run: ./gradlew checkstyleMain checkstyleTest
+
+      - name: Run tests on code
+        run: ./gradlew clean test

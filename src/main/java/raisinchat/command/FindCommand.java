@@ -37,15 +37,15 @@ public class FindCommand extends Command {
      * @throws MissingArgException if command is not used as find [keyword]
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws RaisinChatException {
-        if (this.extraArgs.isBlank()) { // Checks if input contains an index
+        if (this.extraArgs.isBlank()) { // Checks if input contains a keyword
             throw new MissingArgException("find <keyword>");
         }
 
         ArrayList<Task> displayList = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {
-            Task getTask = tasks.getTasks(i);
-            if (getTask.toString().contains(this.extraArgs.trim())) {
-                displayList.add(getTask);
+            Task currentTask = tasks.getTasks(i);
+            if (currentTask.toString().contains(this.extraArgs.trim())) {
+                displayList.add(currentTask);
             }
         }
         if (displayList.isEmpty()) {

@@ -50,14 +50,14 @@ public class EventCommand extends Command {
             throw new MissingArgException(HOW_TO_COMMAND);
         }
         String nameTask = splitArgs[0].trim();
-        String getFullTiming = splitArgs[1].trim();
+        String timingString = splitArgs[1].trim();
         // We split again using /to to get the actual start and end times
-        String[] getActualTiming = getFullTiming.split("/to", 2);
-        if (getActualTiming.length < 2) {
+        String[] timingParts = timingString.split("/to", 2);
+        if (timingParts.length < 2) {
             throw new MissingArgException(HOW_TO_COMMAND);
         }
-        String startTime = getActualTiming[0].trim();
-        String endTime = getActualTiming[1].trim();
+        String startTime = timingParts[0].trim();
+        String endTime = timingParts[1].trim();
         if (nameTask.isEmpty() || startTime.isEmpty() || endTime.isEmpty()) {
             throw new MissingArgException(HOW_TO_COMMAND);
         }

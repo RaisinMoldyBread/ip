@@ -33,7 +33,7 @@ public class UnmarkCommand extends Command {
      * @param tasks   Actual task list to process on
      * @param ui      raisinchat.ui.Ui class to execute user interaction methods
      * @param storage raisinchat.Storage class object to work on
-     * @throws MissingArgException if command is not used as delete [indexOfTask]
+     * @throws MissingArgException if command is not used as unmark [indexOfTask]
      * @throws RaisinChatException if index of task does NOT exist or index is NOT a number
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws RaisinChatException {

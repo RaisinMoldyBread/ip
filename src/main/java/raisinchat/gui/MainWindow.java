@@ -13,6 +13,8 @@ import raisinchat.RaisinChat;
  * Controller for the main GUI.
  */
 public class MainWindow extends AnchorPane {
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/RcUser.png"));
+    private final Image raisinImage = new Image(this.getClass().getResourceAsStream("/images/Raisin.png"));
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -21,11 +23,7 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
-
     private RaisinChat raisinChat;
-
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/RcUser.png"));
-    private final Image raisinImage = new Image(this.getClass().getResourceAsStream("/images/Raisin.png"));
 
     @FXML
     public void initialize() {

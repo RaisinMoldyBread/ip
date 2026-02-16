@@ -4,17 +4,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Abstraction of a Deadline task
+ * Represents a task with a deadline.
  */
 public class Deadline extends Task {
     protected LocalDateTime deadlineBy;
 
     /**
-     * Creates the Deadline Task object
+     * Creates a deadline task.
      *
-     * @param name     of task
-     * @param haveDone false as default
-     * @param doBy     deadline of the task
+     * @param name     task name
+     * @param haveDone whether the task is completed
+     * @param doBy     deadline date-time
      */
     public Deadline(String name, boolean haveDone, LocalDateTime doBy) {
         super(name, haveDone);
@@ -22,15 +22,20 @@ public class Deadline extends Task {
     }
 
     /**
-     * Support method to update Deadline tasks
+     * Updates the deadline date-time.
      *
-     * @param newBy The new deadline to update this specific Deadline object
+     * @param newBy new deadline date-time
      */
     public void setBy(LocalDateTime newBy) {
         assert newBy != null;
         this.deadlineBy = newBy;
     }
 
+    /**
+     * Returns the storage format used for persistence.
+     *
+     * @return full storage string for this task
+     */
     @Override
     public String getFullString() {
         return String.format("D | %s | %s", super.toString(),

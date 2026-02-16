@@ -1,17 +1,17 @@
 package raisinchat.task;
 
 /**
- * Abstraction of a Task which is inherited by other Task types
+ * Base type for all task variants.
  */
 public class Task {
     protected String taskName;
     protected Boolean isDone;
 
     /**
-     * Creates the Task object
+     * Creates a task with the given name and completion state.
      *
-     * @param initName of task
-     * @param haveDone false as default
+     * @param initName task name
+     * @param haveDone whether the task is completed
      */
     public Task(String initName, boolean haveDone) {
         this.taskName = initName;
@@ -19,10 +19,9 @@ public class Task {
     }
 
     /**
-     * Returns result of marking task. If task has been marked before, notify
-     * user that task has already been completed
+     * Marks the task as done and returns a user-facing status message.
      *
-     * @return String result
+     * @return status message after marking the task
      */
     public String markDone() {
         if (this.isDone) {
@@ -37,10 +36,9 @@ public class Task {
     }
 
     /**
-     * Returns result of unmarking task. If task has not been marked, notify
-     * user that task has not been marked
+     * Marks the task as not done and returns a user-facing status message.
      *
-     * @return String result
+     * @return status message after unmarking the task
      */
     public String markUndone() {
         if (!this.isDone) {
@@ -55,10 +53,11 @@ public class Task {
     }
 
     /**
-     * Supports child class fullString() method as some classes need this method to print the full datetime format
+     * Returns the storage format used for persistence.
      *
-     * @return normal string
+     * @return full storage string for this task
      */
+    @Override
     public String getFullString() {
         return this.isDone ? String.format("1 | %s", this.taskName)
                 : String.format("0 | %s", this.taskName);

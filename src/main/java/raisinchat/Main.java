@@ -10,7 +10,8 @@ import javafx.stage.Stage;
 import raisinchat.gui.MainWindow;
 
 /**
- * A GUI for RaisinChat using FXML.
+ * JavaFX application entry point that loads the main window and wires the UI to
+ * the {@link RaisinChat} instance.
  */
 public class Main extends Application {
 
@@ -33,8 +34,8 @@ public class Main extends Application {
     }
 
     /**
-     * This method is called when the application should stop, and provides a
-     * convenient place to prepare for application exit and destroy resources.
+     * Called by the JavaFX runtime during shutdown to perform cleanup, such as
+     * persisting application data.
      */
     @Override
     public void stop() {

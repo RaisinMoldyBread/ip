@@ -15,12 +15,12 @@ public final class DateTimeParser {
     private static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a", Locale.ENGLISH);
 
-    /***
-     * Parse input to store as valid datetime custom to RaisinChat
+    /**
+     * Parses a date-time string into a LocalDateTime object.
      *
-     * @param input Input string to parse
-     * @return datetime of custom format for RaisinChat
-     * @throws RaisinChatException if invalid datetime format from the string is passed into function
+     * @param input date-time string to parse
+     * @return parsed LocalDateTime object
+     * @throws RaisinChatException if the input format is invalid
      */
     public static LocalDateTime parse(String input) throws RaisinChatException {
         assert input != null;

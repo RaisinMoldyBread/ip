@@ -16,16 +16,17 @@ import raisinchat.exceptions.RaisinChatException;
 import raisinchat.exceptions.UnkownCommandException;
 
 /**
- * Abstraction of parsing inputs given by user
+ * Parses raw user input into concrete {@link Command} instances.
  */
 public class Parser {
 
     /**
-     * Parses the full string command from the Ui class that reads the user input
+     * Converts a raw input string into a {@link Command} based on the leading
+     * keyword and optional arguments.
      *
-     * @param command The actual command given by the user to parse
-     * @return Command object that correctly abstracts the command given, allowing for further finer execution
-     * @throws RaisinChatException if given command is empty
+     * @param command raw input string from the UI
+     * @return a concrete {@link Command} representing the user's request
+     * @throws RaisinChatException if the input is empty or invalid
      */
     public static Command parse(String command) throws RaisinChatException {
         assert command != null : "Command to parse is null, please check logic at RaisinChat.java";

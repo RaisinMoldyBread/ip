@@ -9,7 +9,7 @@ import raisinchat.task.TaskList;
 import raisinchat.ui.Ui;
 
 /**
- * Main Application class
+ * Core application class that coordinates parsing, task operations, and UI responses.
  */
 public class RaisinChat {
 
@@ -18,9 +18,9 @@ public class RaisinChat {
     private TaskList tasks;
 
     /**
-     * Creates instance of the application
+     * Creates a new application instance and loads persisted tasks.
      *
-     * @param fileDb Database of past saved tasks to load into the program
+     * @param fileDb path to the task storage file
      */
     public RaisinChat(String fileDb) {
         assert fileDb != null : "File path for storage must not be null";
@@ -41,6 +41,9 @@ public class RaisinChat {
 
     /**
      * Generates a response for the user's chat message.
+     *
+     * @param input raw user input
+     * @return response string to display in the UI
      */
     public String getResponse(String input) {
         assert input != null : "UI passed null input to RaisinChat";
@@ -70,6 +73,8 @@ public class RaisinChat {
 
     /**
      * Returns the welcome message to be displayed in the GUI.
+     *
+     * @return welcome message string
      */
     public String getWelcome() {
         return ui.showWelcome();

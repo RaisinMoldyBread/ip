@@ -3,15 +3,15 @@ package raisinchat.task;
 import java.util.ArrayList;
 
 /**
- * Abstraction of a database of Tasks that is currently used by the program
+ * Maintains the in-memory list of tasks used by the application.
  */
 public class TaskList {
     private final ArrayList<Task> taskList;
 
     /**
-     * Creates the TaskList object based on Storage class loading
+     * Creates a task list from an existing collection.
      *
-     * @param existingList of task if they exist, if not create a new one
+     * @param existingList list of tasks to initialize with
      */
     public TaskList(ArrayList<Task> existingList) {
         assert existingList != null : "existingList must not be null";
@@ -19,16 +19,16 @@ public class TaskList {
     }
 
     /**
-     * Creates the TaskList object on empty load
-     *
+     * Creates an empty task list.
      */
     public TaskList() {
         this.taskList = new ArrayList<>();
     }
 
     /**
-     * Adds a task into the ArrayList for the TaskList class object
+     * Adds a task to the list.
      *
+     * @param task task to add
      */
     public void addTask(Task task) {
         assert task != null : "Cannot add null Task";
@@ -36,8 +36,9 @@ public class TaskList {
     }
 
     /**
-     * Removes a task from the ArrayList for the TaskList class object
+     * Removes a task from the list.
      *
+     * @param task task to remove
      */
     public void deleteTask(Task task) {
         int initialSize = this.taskList.size();
@@ -45,10 +46,21 @@ public class TaskList {
         assert this.size() == initialSize - 1 : "Task list size did not decrease by 1";
     }
 
+    /**
+     * Returns the task at the given index.
+     *
+     * @param taskIndex zero-based index
+     * @return task at the given index
+     */
     public Task getTasks(int taskIndex) {
         return this.taskList.get(taskIndex);
     }
 
+    /**
+     * Returns the number of tasks in the list.
+     *
+     * @return task count
+     */
     public int size() {
         return this.taskList.size();
     }

@@ -3,7 +3,7 @@ package raisinchat.ui;
 import java.util.Scanner;
 
 /**
- * Abstraction of the interaction with the User
+ * Handles user interactions and input/output operations.
  */
 public class Ui {
 

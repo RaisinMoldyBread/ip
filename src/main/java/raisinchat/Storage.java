@@ -17,22 +17,26 @@ import raisinchat.task.TaskList;
 import raisinchat.task.Todo;
 
 /**
- * Abstraction of storing and loading function from a text task list database
+ * Persists tasks to disk and reconstructs them from a text database.
  */
 public class Storage {
 
     private final String file;
 
+    /**
+     * Creates a storage handler targeting the given file path.
+     *
+     * @param filePath path to the task database file
+     */
     public Storage(String filePath) {
         this.file = filePath;
     }
 
     /**
-     * Loads the existing tasks into the abstracted database class called TaskList
-     * If none exist, return an empty ArrayList
+     * Loads tasks from the database file, creating it if missing.
      *
-     * @return an ArrayList of Tasks (empty if no tasks exist)
-     * @throws RaisinChatException if file is corrupted or does not follow expected format for the database
+     * @return list of reconstructed tasks (empty if no tasks exist)
+     * @throws RaisinChatException if the file contents are malformed or cannot be parsed
      */
     public ArrayList<Task> load() throws RaisinChatException {
         File taskFile = new File(this.file);
@@ -92,10 +96,10 @@ public class Storage {
     }
 
     /**
-     * Saves the current tasks into a text file
+     * Writes the current task list to the database file.
      *
-     * @param tasks List of current tasks before program exits
-     * @return if task list was saved or not, false if and only if it fails to find the file and overwrite it
+     * @param tasks list of current tasks before program exits
+     * @return {@code true} if the file was written successfully; {@code false} otherwise
      */
     public boolean save(TaskList tasks) {
         assert tasks != null : "TaskList passed to Storage.save() must not be null";

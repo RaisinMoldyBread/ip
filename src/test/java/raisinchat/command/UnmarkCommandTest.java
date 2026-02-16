@@ -19,49 +19,48 @@ import raisinchat.task.TaskList;
 import raisinchat.task.Todo;
 import raisinchat.ui.Ui;
 
-public class MarkCommandTest {
+public class UnmarkCommandTest {
 
     private Ui ui;
     private TaskList tasks;
     private Storage storage;
 
-    /**
-     * Initialises tests' common assets
-     *
-     */
     @BeforeEach
     public void setUp() {
         ui = TestFixtures.ui();
         storage = TestFixtures.storage();
 
         ArrayList<Task> taskList = new ArrayList<>();
-        taskList.add(new Todo("homework", false));
+        taskList.add(new Todo("homework", true));
         tasks = new TaskList(taskList);
     }
 
-    /**
-     * Test for mark command if inputs are properly parsed and added to task list
-     *
-     */
     @Test
-    public void mark_validIndex_taskMarkedCorrectly() throws RaisinChatException {
-        Command c = Parser.parse("mark 1");
+    public void unmark_validIndex_taskUnmarkedCorrectly() throws RaisinChatException {
+        Command c = Parser.parse("unmark 1");
 
         assertDoesNotThrow(() -> c.execute(tasks, ui, storage));
 
+        assertEquals("T | 0 | homework", tasks.getTasks(0).toString());
+    }
+
+    @Test
+    public void unmark_missingIndex_throwsException() throws RaisinChatException {
+        Command c = Parser.parse("unmark");
+
+        RaisinChatException e = assertThrows(
+                RaisinChatException.class, () -> c.execute(tasks, ui, storage)
+        );
+
         assertEquals(
-                "T | 1 | homework",
-                tasks.getTasks(0).toString()
+                "Hmm, you are doing it wrong! Use command like this: unmark <indexOfTask>",
+                e.getMessage()
         );
     }
 
-    /**
-     * Test for mark command when index is not valid
-     *
-     */
     @Test
-    public void mark_invalidIndex_throwsException() throws RaisinChatException {
-        Command c = Parser.parse("mark 100000");
+    public void unmark_invalidIndex_throwsException() throws RaisinChatException {
+        Command c = Parser.parse("unmark 999");
 
         RaisinChatException e = assertThrows(
                 RaisinChatException.class, () -> c.execute(tasks, ui, storage)
@@ -73,49 +72,20 @@ public class MarkCommandTest {
         );
     }
 
-    /**
-     * Test for mark command when index is not a number
-     *
-     */
     @Test
-    public void mark_nonNumericIndex_throwsException() throws RaisinChatException {
-        Command c = Parser.parse("mark ten");
+    public void unmark_nonNumericIndex_throwsException() throws RaisinChatException {
+        Command c = Parser.parse("unmark one");
 
         RaisinChatException e = assertThrows(
                 RaisinChatException.class, () -> c.execute(tasks, ui, storage)
         );
 
-        assertEquals(
-                "Task index must be a number!",
-                e.getMessage()
-        );
+        assertEquals("Task index must be a number!", e.getMessage());
     }
 
-    /**
-     * Test for mark command when index is missing
-     *
-     */
     @Test
-    public void mark_missingIndex_throwsException() throws RaisinChatException {
-        Command c = Parser.parse("mark");
-
-        RaisinChatException e = assertThrows(
-                RaisinChatException.class, () -> c.execute(tasks, ui, storage)
-        );
-
-        assertEquals(
-                "Hmm, you are doing it wrong! Use command like this: mark <indexOfTask>",
-                e.getMessage()
-        );
-    }
-
-    /**
-     * Test for mark command and ensure that mark is not a command that causes the program to exit
-     *
-     */
-    @Test
-    public void markCommand_isNotExitCommand() throws RaisinChatException {
-        Command c = Parser.parse("mark 1");
+    public void unmarkCommand_isNotExitCommand() throws RaisinChatException {
+        Command c = Parser.parse("unmark 1");
 
         assertFalse(c.isExit());
     }

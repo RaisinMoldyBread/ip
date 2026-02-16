@@ -57,7 +57,6 @@ public class Task {
      *
      * @return full storage string for this task
      */
-    @Override
     public String getFullString() {
         return this.isDone ? String.format("1 | %s", this.taskName)
                 : String.format("0 | %s", this.taskName);

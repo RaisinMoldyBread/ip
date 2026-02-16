@@ -1,5 +1,6 @@
 package raisinchat.command;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import raisinchat.Parser;
 import raisinchat.Storage;
+import raisinchat.TestFixtures;
 import raisinchat.exceptions.RaisinChatException;
 import raisinchat.task.TaskList;
 import raisinchat.ui.Ui;
@@ -26,9 +28,9 @@ public class DeadlineCommandTest {
      */
     @BeforeEach
     public void setUp() {
-        ui = new Ui();
-        tasks = new TaskList(null);
-        storage = new Storage("./data/RaisinChatTaskTestDb.txt");
+        ui = TestFixtures.ui();
+        tasks = TestFixtures.emptyTaskList();
+        storage = TestFixtures.storage();
     }
 
     /**
@@ -39,11 +41,11 @@ public class DeadlineCommandTest {
     public void deadline_validInput_taskAddedCorrectly() throws RaisinChatException {
         Command c = Parser.parse("deadline finish stats /by 2026-01-03 11:00 PM");
 
-        c.execute(tasks, ui, storage);
+        assertDoesNotThrow(() -> c.execute(tasks, ui, storage));
 
         assertEquals(1, tasks.size());
         assertEquals(
-                "D | 0 | finish stats | Jan 3 2026 11:00 pm",
+            "D | 0 | finish stats | Jan 3 2026 11:00 pm",
                 tasks.getTasks(0).toString()
         );
     }
@@ -75,15 +77,24 @@ public class DeadlineCommandTest {
     public void deadline_incompleteDateTime_throwsException() throws RaisinChatException {
         Command c = Parser.parse("deadline finish stats /by 11:00 PM");
 
-        RaisinChatException e = assertThrows(
-                RaisinChatException.class, () -> c.execute(tasks, ui, storage)
-        );
+        String res = assertDoesNotThrow(() -> c.execute(tasks, ui, storage));
 
-        assertEquals(
-                "Hmm, you are doing it wrong! Use command like this: "
-                        + "deadline <taskName> /by <yyyy-MM-dd hh:mm AM/PM>",
-                e.getMessage()
-        );
+        assertEquals("Invalid date format. Use yyyy-MM-dd hh:mm AM/PM", res);
+        assertEquals(0, tasks.size());
+    }
+
+    /**
+     * Test for invalid deadline datetime format, should return parse error message
+     *
+     */
+    @Test
+    public void deadline_invalidDateTime_returnsErrorMessage() throws RaisinChatException {
+        Command c = Parser.parse("deadline finish stats /by 2026-13-03 11:00 PM");
+
+        String res = assertDoesNotThrow(() -> c.execute(tasks, ui, storage));
+
+        assertEquals("Invalid date format. Use yyyy-MM-dd hh:mm AM/PM", res);
+        assertEquals(0, tasks.size());
     }
 
     /**

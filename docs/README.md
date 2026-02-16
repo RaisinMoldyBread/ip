@@ -5,6 +5,8 @@
 ![Build](https://img.shields.io/badge/build-passing-brightgreen)
 
 **RaisinChat** is a desktop application for managing tasks, optimized for users who prefer a Command Line Interface (CLI) experience but want the visual benefits of a Graphical User Interface (GUI).
+
+
 ![Product Screenshot](Ui.png)
 > **Note:** This project is currently in active development.
 

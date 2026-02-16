@@ -33,3 +33,6 @@ jobs:
 
       - name: Build and check with Gradle
         run: ./gradlew checkstyleMain checkstyleTest
+
+      - name: Run tests for RaisinChat
+        run: ./gradlew clean test

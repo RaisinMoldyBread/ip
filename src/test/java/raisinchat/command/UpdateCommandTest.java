@@ -118,8 +118,7 @@ public class UpdateCommandTest {
     @Test
     public void update_nonNumericIndex_throwsException() {
         RaisinChatException e = assertThrows(
-                RaisinChatException.class,
-                () -> Parser.parse("update one /by 2026-01-04 01:00 PM")
+                RaisinChatException.class, () -> Parser.parse("update one /by 2026-01-04 01:00 PM")
         );
 
         assertEquals("First argument must be a task index", e.getMessage());

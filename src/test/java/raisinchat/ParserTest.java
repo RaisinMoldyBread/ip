@@ -13,8 +13,7 @@ public class ParserTest {
     @Test
     public void parse_emptyInput_throwsException() {
         RaisinChatException e = assertThrows(
-                RaisinChatException.class,
-                () -> Parser.parse("   ")
+                RaisinChatException.class, () -> Parser.parse("   ")
         );
 
         assertTrue(e.getMessage().contains("Empty command received"));
@@ -23,8 +22,7 @@ public class ParserTest {
     @Test
     public void parse_unknownCommand_throwsException() {
         RaisinChatException e = assertThrows(
-                RaisinChatException.class,
-                () -> Parser.parse("unknownCommand")
+                RaisinChatException.class, () -> Parser.parse("unknownCommand")
         );
 
         assertTrue(e.getMessage().contains("unknowncommand"));

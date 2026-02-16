@@ -23,8 +23,7 @@ public class ByeCommandTest {
         Command c = new ByeCommand(Command.UserCommand.BYE);
         TaskList tasks = TestFixtures.emptyTaskList();
 
-        String res = assertDoesNotThrow(
-                () -> c.execute(tasks, TestFixtures.ui(), TestFixtures.storage()));
+        String res = assertDoesNotThrow(() -> c.execute(tasks, TestFixtures.ui(), TestFixtures.storage()));
 
         assertEquals("Bye :\") Please come back again :\")", res);
     }

@@ -48,7 +48,6 @@ public class UpdateCommand extends Command {
         this.newBy = extractOption(options, "/by");
         this.newFrom = extractOption(options, "/from");
         this.newTo = extractOption(options, "/to");
-
     }
 
     /**

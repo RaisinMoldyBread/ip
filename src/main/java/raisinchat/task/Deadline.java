@@ -2,6 +2,7 @@ package raisinchat.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Represents a task with a deadline.
@@ -45,6 +46,6 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format("D | %s | %s", super.toString(),
-                this.deadlineBy.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a")));
+                this.deadlineBy.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a", Locale.ENGLISH)));
     }
 }

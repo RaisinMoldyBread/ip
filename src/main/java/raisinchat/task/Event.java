@@ -2,6 +2,7 @@ package raisinchat.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Abstraction of an Event task
@@ -79,7 +80,7 @@ public class Event extends Task {
     public String toString() {
         return String.format("E | %s | %s -> %s",
                 super.toString(),
-                this.startBy.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a")),
-                this.endBy.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a")));
+                this.startBy.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a", Locale.ENGLISH)),
+                this.endBy.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a", Locale.ENGLISH)));
     }
 }

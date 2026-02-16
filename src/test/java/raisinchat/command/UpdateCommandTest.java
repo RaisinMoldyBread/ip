@@ -51,7 +51,7 @@ public class UpdateCommandTest {
         assertDoesNotThrow(() -> c.execute(tasks, ui, storage));
 
         assertEquals(
-            "D | 0 | stats | Jan 4 2026 01:00 pm",
+            "D | 0 | stats | Jan 4 2026 01:00 PM",
                 tasks.getTask(0).toString()
         );
     }
@@ -63,7 +63,7 @@ public class UpdateCommandTest {
         assertDoesNotThrow(() -> c.execute(tasks, ui, storage));
 
         assertEquals(
-            "E | 0 | concert | Jan 2 2026 09:00 am -> Jan 2 2026 11:00 am",
+            "E | 0 | concert | Jan 2 2026 09:00 AM -> Jan 2 2026 11:00 AM",
                 tasks.getTask(1).toString()
         );
     }

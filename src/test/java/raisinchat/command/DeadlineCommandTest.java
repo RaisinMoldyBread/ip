@@ -45,7 +45,7 @@ public class DeadlineCommandTest {
 
         assertEquals(1, tasks.size());
         assertEquals(
-            "D | 0 | finish stats | Jan 3 2026 11:00 pm",
+            "D | 0 | finish stats | Jan 3 2026 11:00 PM",
                 tasks.getTask(0).toString()
         );
     }

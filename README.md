@@ -5,7 +5,9 @@
 ![Build](https://img.shields.io/badge/build-passing-brightgreen)
 
 **RaisinChat** is a desktop application for managing tasks, optimized for users who prefer a Command Line Interface (CLI) experience but want the visual benefits of a Graphical User Interface (GUI).
-![Product Screenshot](docs/Ui.png)
+
+
+![Product Screenshot](Ui.png)
 > **Note:** This project is currently in active development.
 
 ---
@@ -14,8 +16,8 @@
 - [About](#about)
 - [Features](#features)
 - [Getting Started](#getting-started)
-   - [Prerequisites](#prerequisites)
-   - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
 - [Usage](#usage)
 - [Data Storage](#data-storage)
 - [Testing](#testing)
@@ -38,21 +40,21 @@ RaisinChat helps you keep track of your daily tasks, deadlines, and events. It b
 
 ### Prerequisites
 Ensure you have the following installed on your machine:
-* **JDK 11** or higher (JDK 17 recommended)
-* [IntelliJ IDEA](https://www.jetbrains.com/idea/) (Recommended IDE)
+* **Java 17** or higher (required to run the application).
+    * *To check if you have it installed, open your terminal and run:* `java -version`
 
-### Installation
-1.  **Clone the repository**
+### Installation & Running
+1.  **Download the Release**
+    * Go to the [Releases page](https://github.com/RaisinMoldyBread/ip/releases/tag/A-Release) on GitHub.
+    * Download the latest `RaisinChat.jar` file.
+
+2.  **Run the Application**
+    * Open a command terminal (Command Prompt, PowerShell, or Terminal).
+    * Navigate to the folder where you downloaded the file.
+    * Run the following command:
     ```bash
-    git clone [https://github.com/RaisinMoldyBread/RaisinChat.git](https://github.com/YOUR_USERNAME/RaisinChat.git)
+    java -jar RaisinChat.jar
     ```
-2.  **Open in IntelliJ IDEA**
-   * File > Open > Select the `RaisinChat` folder.
-   * Let Gradle/Maven sync the dependencies.
-
-3.  **Run the Application**
-   * Locate the `src/main/java/raisinchat/Main.java` file.
-   * Right-click and select `Run 'Main.main()'`.
 
 ---
 
@@ -62,15 +64,15 @@ Once the application launches, you can interact with RaisinChat using the text i
 
 ### Common Commands
 
-| Action | Command Format                         | Example                                                           |
-| :--- |:---------------------------------------|:------------------------------------------------------------------|
-| **Add Todo** | `todo <description>`                   | `todo Buy grapes`                                                 |
-| **Add Deadline** | `deadline <desc> /by <date-time>`      | `deadline Return book /by 2024-02-20 10:00 AM`                    |
+| Action | Command Format | Example |
+| :--- | :--- | :--- |
+| **Add Todo** | `todo <description>` | `todo Buy grapes` |
+| **Add Deadline** | `deadline <desc> /by <date>` | `deadline Return book /by 2024-02-20 10:00 AM` |
 | **Add Event** | `event <desc> /from <start> /to <end>` | `event Meeting /from 2024-02-20 10:00 AM /to 2024-02-20 11:00 AM` |
-| **List Tasks** | `list`                                 | `list`                                                            |
-| **Mark Done** | `mark <task_index>`                    | `mark 1`                                                          |
-| **Delete Task** | `delete <task_index>`                  | `delete 3`                                                        |
-| **Exit** | `bye`                                  | `bye`                                                             |
+| **List Tasks** | `list` | `list` |
+| **Mark Done** | `mark <task_index>` | `mark 1` |
+| **Delete Task** | `delete <task_index>` | `delete 3` |
+| **Exit** | `bye` | `bye` |
 
 
 ---
@@ -88,7 +90,15 @@ RaisinChat automatically saves your data to a local file.
 We use JUnit for testing. The project includes a `TestFixtures` class to provide consistent objects for unit tests.
 
 To run tests:
-1.  Open the **Gradle** (or Maven) tab in your IDE.
+1.  **Clone the repository**
+    ```bash
+    
+    git clone [https://github.com/RaisinMoldyBread/RaisinChat.git](https://github.com/YOUR_USERNAME/RaisinChat.git)
+    
+    ```
+2.  Open in IntelliJ IDEA
+    * File > Open > Select the `RaisinChat` folder.
+3.  Open the **Gradle** (or Maven) tab in your IDE.
 2.  Navigate to `Tasks` > `verification`.
 3.  Double-click `test`.
 

@@ -67,14 +67,13 @@ Once the application launches, you can interact with RaisinChat using the text i
 | Action | Command Format | Example |
 | :--- | :--- | :--- |
 | **Add Todo** | `todo <description>` | `todo Buy grapes` |
-| **Add Deadline** | `deadline <desc> /by <date>` | `deadline Return book /by 2024-02-20` |
-| **Add Event** | `event <desc> /from <start> /to <end>` | `event Meeting /from 2pm /to 4pm` |
+| **Add Deadline** | `deadline <desc> /by <date>` | `deadline Return book /by 2024-02-20 10:00 AM` |
+| **Add Event** | `event <desc> /from <start> /to <end>` | `event Meeting /from 2024-02-20 10:00 AM /to 2024-02-20 11:00 AM` |
 | **List Tasks** | `list` | `list` |
 | **Mark Done** | `mark <task_index>` | `mark 1` |
 | **Delete Task** | `delete <task_index>` | `delete 3` |
 | **Exit** | `bye` | `bye` |
 
-*(Note: Replace the commands above with the specific syntax your Parser logic supports if different)*
 
 ---
 

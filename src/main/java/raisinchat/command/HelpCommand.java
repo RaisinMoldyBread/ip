@@ -32,8 +32,8 @@ public class HelpCommand extends Command {
 
             update [task index] /by [yyyy-MM-dd hh:mm AM/PM]
             update [task index] /from [yyyy-MM-dd hh:mm AM/PM]
-            update [task index] /by [yyyy-MM-dd hh:mm AM/PM]
-            update [task index] /from [yyyy-MM-dd hh:mm AM/PM] /by [yyyy-MM-dd hh:mm AM/PM]
+            update [task index] /to [yyyy-MM-dd hh:mm AM/PM]
+            update [task index] /from [yyyy-MM-dd hh:mm AM/PM] /to [yyyy-MM-dd hh:mm AM/PM]
                 - Updates Deadline or Event tasks' date and times
 
             find [keyword]

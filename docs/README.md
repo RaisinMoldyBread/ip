@@ -72,7 +72,7 @@ Once the application launches, you can interact with RaisinChat using the text i
 | **Add Event**    | `event <desc> /from <start> /to <end>` | `event Meeting /from 2024-02-20 10:00 AM /to 2024-02-20 11:00 AM` |
 | **List Tasks**   | `list`                                 | `list`                                                            |
 | **Mark Done**    | `mark <task_index>`                    | `mark 1`                                                          |
-| **Unmark Done**  | `unmark <task_index>`                  | `mark 1`                                                          |
+| **Unmark Done**  | `unmark <task_index>`                  | `unmark 1`                                                        |
 | **Delete Task**  | `delete <task_index>`                  | `delete 3`                                                        |
 | **Exit**         | `bye`                                  | `bye`                                                             |
 ---

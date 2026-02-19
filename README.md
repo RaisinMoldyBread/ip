@@ -76,6 +76,7 @@ Once the application launches, you can interact with RaisinChat using the text i
 | **Delete Task**  | `delete <task_index>`                  | `delete 3`                                                        |
 | **Exit**         | `bye`                                  | `bye`                                                             |
 ---
+
 More commands will be featured at the 'help' command
 
 ## Data Storage

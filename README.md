@@ -75,7 +75,7 @@ Once the application launches, you can interact with RaisinChat using the text i
 | **Unmark Done**  | `unmark <task_index>`                  | `unmark 1`                                                        |
 | **Delete Task**  | `delete <task_index>`                  | `delete 3`                                                        |
 | **Exit**         | `bye`                                  | `bye`                                                             |
----
+
 
 More commands will be featured at the 'help' command
 

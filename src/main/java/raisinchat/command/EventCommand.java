@@ -49,7 +49,7 @@ public class EventCommand extends Command {
         if (splitArgs.length < 2) {
             throw new MissingArgException(HOW_TO_COMMAND);
         }
-        String nameTask = splitArgs[0].trim();
+        String nameTask = splitArgs[0].trim().replace("|", "-");
         String timingString = splitArgs[1].trim();
         // We split again using /to to get the actual start and end times
         String[] timingParts = timingString.split("/to", 2);

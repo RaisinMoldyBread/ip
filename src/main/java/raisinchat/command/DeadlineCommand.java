@@ -46,7 +46,7 @@ public class DeadlineCommand extends Command {
         if (deadlineArgs.length < 2) {
             throw new MissingArgException(HOW_TO_COMMAND);
         }
-        String nameTask = deadlineArgs[0].trim();
+        String nameTask = deadlineArgs[0].trim().replace("|", "-");
         String by = deadlineArgs[1].trim();
         if (nameTask.isEmpty() || by.isEmpty()) {
             throw new MissingArgException(HOW_TO_COMMAND);
